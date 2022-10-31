@@ -1,16 +1,3 @@
-<div>
-    <h1 style="font-size: large">Crear Grupo</h1>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Nombre del grupo</mat-label>
-      <input matInput placeholder="Placeholder" />
-    </mat-form-field>
-  
-    <div style="display:flex ; ">
-      <button mat-flat-button  style="margin-right: 1rem; background-color: #071A4E; color: white;">Guardar</button>
-  
-      <!-- cancelar sera <a> -->
-      <button mat-stroked-button >Cancelar</button>
-    </div>
-  </div>
-  
+<h2>Crear Grupo</h2>
+
+<app-formulario-grupo (onSubmit)="guardarGrupo($event)"></app-formulario-grupo>

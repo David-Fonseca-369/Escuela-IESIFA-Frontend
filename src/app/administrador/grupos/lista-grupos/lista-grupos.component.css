@@ -1,0 +1,17 @@
+.grupos{
+    width: 50%;
+}
+
+
+table{
+   width: 100%;
+    border-radius: 6px;
+}
+
+table button{
+    margin: .5rem
+}
+
+.button-primary{
+    margin-bottom: 1rem;
+}
