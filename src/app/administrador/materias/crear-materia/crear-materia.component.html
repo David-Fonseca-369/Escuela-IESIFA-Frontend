@@ -1,15 +1,3 @@
-<div>
-  <h1 style="font-size: large">Crear Materia</h1>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Nombre de la materia</mat-label>
-    <input matInput placeholder="Placeholder" />
-  </mat-form-field>
-
-  <div style="display:flex ; ">
-    <button mat-flat-button  style="margin-right: 1rem; background-color: #071A4E; color: white;">Guardar</button>
-
-    <!-- cancelar sera <a> -->
-    <button mat-stroked-button>Cancelar</button>
-  </div>
-</div>
+<app-spinner [isLoading]="isLoading"></app-spinner>
+<h2>Crear Materia</h2>
+<app-formulario-materia (onSubmit)="guardarCambios($event)" [errores]="errores"></app-formulario-materia>

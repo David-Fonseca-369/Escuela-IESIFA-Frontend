@@ -2,19 +2,16 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { grupoCrearDTO, grupoDTO, grupoEditarDTO, grupoSelectorDTO } from './grupo';
+import { materiaCrearDTO, materiaDTO, materiaEditarDTO } from './materia';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class GruposService {
-  private apiURL = environment.apiURL + 'grupos';
+export class MateriasService {
 
-  constructor(private http: HttpClient) {}
+  private apiURL = environment.apiURL + 'materias';
 
-  public todos(): Observable<grupoDTO[]> {
-    return this.http.get<grupoDTO[]>(`${this.apiURL}/todos`);
-  }
+  constructor(private http : HttpClient) { }
 
   public todosPaginacion(
     pagina: number,
@@ -25,21 +22,17 @@ export class GruposService {
     params = params.append('pagina', pagina.toString());
     params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
 
-    return this.http.get<grupoDTO[]>(`${this.apiURL}/todosPaginacion`,{ observe: 'response', params});
+    return this.http.get<materiaDTO[]>(`${this.apiURL}/todosPaginacion`,{ observe: 'response', params});
   }
 
-  public gruposSelector(): Observable<grupoSelectorDTO[]>{
-return this.http.get<grupoSelectorDTO[]>(`${this.apiURL}/gruposSelector`)
+  public obtenerPorId(id: number): Observable<materiaEditarDTO> {
+    return this.http.get<materiaEditarDTO>(`${this.apiURL}/${id}`);
   }
 
-  public obtenerPorId(id: number): Observable<grupoEditarDTO> {
-    return this.http.get<grupoEditarDTO>(`${this.apiURL}/${id}`);
-  }
-
-  public crear(grupo: grupoCrearDTO): Observable<any> {
+  public crear(grupo: materiaCrearDTO): Observable<any> {
     return this.http.post(`${this.apiURL}/crear`, grupo);
   }
-  public editar(grupo: grupoCrearDTO, id: number): Observable<any> {
+  public editar(grupo: materiaCrearDTO, id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/editar/${id}`, grupo);
   }
 
@@ -49,4 +42,5 @@ return this.http.get<grupoSelectorDTO[]>(`${this.apiURL}/gruposSelector`)
   public descativar(id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/desactivar/${id}`, null);
   }
+
 }

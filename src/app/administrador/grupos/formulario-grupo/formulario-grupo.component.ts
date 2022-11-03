@@ -29,6 +29,7 @@ export class FormularioGrupoComponent implements OnInit {
   nivelesEducativos: nivelEducativoDTO[];
 
   grados: gradoSelectorDTO[];
+  isLoading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -78,37 +79,51 @@ export class FormularioGrupoComponent implements OnInit {
   }
 
   obtenerNivelesEducativos() {
+    this.isLoading = true;
+
     this.nivelesEducativosService.todos().subscribe({
       next: (response) => {
+        this.isLoading = false;
+
         this.nivelesEducativos = response;
 
         console.log(response);
       },
       error: (error) => {
+        this.isLoading = false;
         this.errores = parsearErroresAPI(error);
       },
     });
   }
 
   obtenerGrados(event: any) {
+    this.isLoading = true;
+
     this.gradosService.gradosSelector(event.value).subscribe({
       next: (response) => {
+        this.isLoading = false;
         this.grados = response;
       },
 
       error: (error) => {
+        this.isLoading = false;
         this.errores = parsearErroresAPI(error);
       },
     });
   }
 
   obtenerGradosEditar(idNivelEducativo: number) {
+
+    this.isLoading = true;
+
     this.gradosService.gradosSelector(idNivelEducativo).subscribe({
       next: (response) => {
+        this.isLoading = false;
         this.grados = response;
       },
 
       error: (error) => {
+        this.isLoading = false;
         this.errores = parsearErroresAPI(error);
       },
     });

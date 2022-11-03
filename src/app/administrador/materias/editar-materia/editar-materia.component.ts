@@ -2,61 +2,54 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
-import { grupoCrearDTO, grupoDTO, grupoEditarDTO } from '../grupo';
-import { GruposService } from '../grupos.service';
+import { materiaEditarDTO } from '../materia';
+import { MateriasService } from '../materias.service';
 
 @Component({
-  selector: 'app-editar-grupo',
-  templateUrl: './editar-grupo.component.html',
-  styleUrls: ['./editar-grupo.component.css'],
+  selector: 'app-editar-materia',
+  templateUrl: './editar-materia.component.html',
+  styleUrls: ['./editar-materia.component.css'],
 })
-export class EditarGrupoComponent implements OnInit {
+export class EditarMateriaComponent implements OnInit {
   errores: string[] = [];
-  grupo: grupoEditarDTO;
   isLoading = false;
+  materia: materiaEditarDTO;
 
   constructor(
-    private gruposService: GruposService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private notify : NotifyService
+    private notify: NotifyService,
+    private materiasService: MateriasService
   ) {}
 
   ngOnInit(): void {
-    this.obtenerGrupo();
+    this.obtenerMateria();
   }
 
-  obtenerGrupo() {
+  obtenerMateria() {
     this.isLoading = true;
     this.activatedRoute.params.subscribe((params) => {
-      this.gruposService.obtenerPorId(params['id']).subscribe({
+      this.materiasService.obtenerPorId(params['id']).subscribe({
         next: (response) => {
           this.isLoading = false;
-          this.grupo = response;
+          this.materia = response;
         },
         error: () => {
           this.isLoading = false;
-          this.router.navigate(['/grupos']);
+         this.router.navigate(['/materias'])
         },
       });
     });
   }
 
   guardarCambios(event: any) {
-    
     this.isLoading = true;
 
-    let grupo: grupoCrearDTO = {
-      idGrado: event.idGrado,
-      nombre: event.nombre,
-    };
-
-    this.gruposService.editar(grupo, this.grupo.id).subscribe({
+    this.materiasService.editar(event, this.materia.id).subscribe({
       next: () => {
         this.isLoading = false;
-        this.notify.successfulNotification("¡Modificado!")
-        this.router.navigate(['/grupos']);
-        
+        this.notify.successfulNotification("¡Modificado!");
+        this.router.navigate(['/materias']);
       },
       error: (error) => {
         this.isLoading = false;

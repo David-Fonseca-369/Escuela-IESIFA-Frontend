@@ -1,3 +1,4 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
 <h2>Editar Grupo</h2>
 
-<app-formulario-grupo *ngIf="grupo" [grupo]="grupo"></app-formulario-grupo>
+<app-formulario-grupo  (onSubmit)="guardarCambios($event)"  *ngIf="grupo" [grupo]="grupo" [errores]="errores"></app-formulario-grupo>

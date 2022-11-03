@@ -10,6 +10,12 @@ import { CrearMateriaComponent } from './administrador/materias/crear-materia/cr
 import { CrearGrupoComponent } from './administrador/grupos/crear-grupo/crear-grupo.component';
 import { ListaGruposComponent } from "./administrador/grupos/lista-grupos/lista-grupos.component";
 
+//mensajes sweet alert
+////v11.0.0
+//npm i @sweetalert2/ngx-sweetalert2@11.0.0 --force
+
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 //Formularios Reactivos
 //Binding de doble via
@@ -17,9 +23,16 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 //Para consumir APIs
 import { HttpClientModule } from "@angular/common/http";
+
+//componentes
 import { FormularioGrupoComponent } from './administrador/grupos/formulario-grupo/formulario-grupo.component';
 import { MostrarErroresComponent } from './helpers/mostrar-errores/mostrar-errores.component';
 import { EditarGrupoComponent } from './administrador/grupos/editar-grupo/editar-grupo.component';
+import { SpinnerComponent } from './helpers/spinner/spinner.component';
+import { NotifyComponent } from './snackBars/notify/notify.component';
+import { ListaMateriasComponent } from './administrador/materias/lista-materias/lista-materias.component';
+import { FormularioMateriaComponent } from './administrador/materias/formulario-materia/formulario-materia.component';
+import { EditarMateriaComponent } from './administrador/materias/editar-materia/editar-materia.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +43,12 @@ import { EditarGrupoComponent } from './administrador/grupos/editar-grupo/editar
     ListaGruposComponent,
     FormularioGrupoComponent,
     MostrarErroresComponent,
-    EditarGrupoComponent
+    EditarGrupoComponent,
+    SpinnerComponent,
+    NotifyComponent,
+    ListaMateriasComponent,
+    FormularioMateriaComponent,
+    EditarMateriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +57,8 @@ import { EditarGrupoComponent } from './administrador/grupos/editar-grupo/editar
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]

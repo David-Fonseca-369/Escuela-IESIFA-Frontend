@@ -1,17 +1,19 @@
-<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
 
+<app-spinner [isLoading]="isLoading"></app-spinner>
 <form [formGroup]="form">
   <div class="form">
     <mat-form-field appearance="outline">
       <mat-label>Nivel Educativo</mat-label>
-      <mat-select formControlName="idNivelEducativo" (selectionChange)="obtenerGrados($event)">
+      <mat-select
+        formControlName="idNivelEducativo"
+        (selectionChange)="obtenerGrados($event)"
+      >
         <mat-option *ngFor="let nivel of nivelesEducativos" [value]="nivel.id">
           {{ nivel.nombre }}
         </mat-option>
       </mat-select>
       <mat-error>El campo Nivel Educativo es requerido.</mat-error>
     </mat-form-field>
-
 
     <mat-form-field appearance="outline">
       <mat-label>Grado</mat-label>
@@ -35,7 +37,7 @@
   <div class="buttons">
     <button
       mat-flat-button
-     class="button-primary"
+      class="button-primary"
       [disabled]="form.invalid"
       (click)="guardar()"
     >
@@ -44,3 +46,4 @@
     <a mat-stroked-button routerLink="/grupos"> Cancelar </a>
   </div>
 </form>
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>

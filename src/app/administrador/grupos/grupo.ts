@@ -18,3 +18,9 @@ export interface grupoCrearDTO{
     idGrado : number;
     nombre : string;
 }
+
+
+export interface grupoSelectorDTO{
+    id: number;
+    nombre : string;
+}

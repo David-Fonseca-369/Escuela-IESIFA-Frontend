@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
+import { NotifyService } from 'src/app/services/notify.service';
 import { grupoCrearDTO, grupoDTO } from '../grupo';
 import { GruposService } from '../grupos.service';
 
@@ -11,12 +12,18 @@ import { GruposService } from '../grupos.service';
 })
 export class CrearGrupoComponent implements OnInit {
   errores: string[] = [];
+isLoading = false;
 
-  constructor(private gruposService: GruposService, private router: Router) {}
+  constructor(
+    private gruposService: GruposService,
+    private router: Router,
+    private notify: NotifyService
+  ) {}
 
   ngOnInit(): void {}
 
   guardarGrupo(event: any) {
+    this.isLoading = true;
     let grupo: grupoCrearDTO = {
       idGrado: event.idGrado,
       nombre: event.nombre,
@@ -24,10 +31,12 @@ export class CrearGrupoComponent implements OnInit {
 
     this.gruposService.crear(grupo).subscribe({
       next: () => {
-        alert('Creado!');
+        this.isLoading = false;
+        this.notify.successfulNotification("¡Creado!")
         this.router.navigate(['/grupos']);
       },
       error: (error) => {
+        this.isLoading = false;
         this.errores = parsearErroresAPI(error);
       },
     });

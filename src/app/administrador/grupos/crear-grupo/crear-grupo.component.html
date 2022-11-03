@@ -1,3 +1,5 @@
+
+<app-spinner [isLoading]="isLoading"></app-spinner>
 <h2>Crear Grupo</h2>
 
-<app-formulario-grupo (onSubmit)="guardarGrupo($event)"></app-formulario-grupo>
+<app-formulario-grupo (onSubmit)="guardarGrupo($event)" [errores]="errores"></app-formulario-grupo>

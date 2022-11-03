@@ -4,58 +4,48 @@ import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
 import Swal from 'sweetalert2';
-import { grupoDTO } from '../grupo';
-import { GruposService } from '../grupos.service';
+import { materiaDTO } from '../materia';
+import { MateriasService } from '../materias.service';
 
 @Component({
-  selector: 'app-lista-grupos',
-  templateUrl: './lista-grupos.component.html',
-  styleUrls: ['./lista-grupos.component.css'],
+  selector: 'app-lista-materias',
+  templateUrl: './lista-materias.component.html',
+  styleUrls: ['./lista-materias.component.css'],
 })
-export class ListaGruposComponent implements OnInit {
+export class ListaMateriasComponent implements OnInit {
   isLoading = false;
-  grupos: grupoDTO[];
+  materias: materiaDTO[];
   errores: string[] = [];
-  columnasAMostrar = [
-    'nombre',
-    'nombreGrado',
-    'nombreNivelEducativo',
-    'estado',
-    'opciones',
-  ];
+
+  columnasAMostrar = ['nombre', 'nombreGrupo', 'estado', 'opciones'];
 
   //paginacion
   cantidadTotalRegistros;
   paginaActual = 1;
   cantidadRegistrosAMostrar = 10;
 
-  constructor(
-    private gruposService: GruposService,
-    private notify: NotifyService
-  ) {}
+  constructor(private materiasService: MateriasService,
+    private notify : NotifyService) {}
 
   ngOnInit(): void {
-    this.obtenerGruposPaginacion(
+    this.obtenerMateriasPaginacion(
       this.paginaActual,
       this.cantidadRegistrosAMostrar
     );
   }
 
-  obtenerGruposPaginacion(pagina: number, cantidadRegistrosAMostrar: number) {
+  obtenerMateriasPaginacion(pagina: number, cantidadRegistrosAMostrar: number) {
     this.isLoading = true;
-    this.gruposService
+    this.materiasService
       .todosPaginacion(pagina, cantidadRegistrosAMostrar)
       .subscribe({
-        next: (response: HttpResponse<grupoDTO[]>) => {
+        next: (response: HttpResponse<materiaDTO[]>) => {
           this.isLoading = false;
 
-          this.grupos = response.body;
+          this.materias = response.body;
           this.cantidadTotalRegistros = response.headers.get(
             'cantidadTotalRegistros'
           );
-
-          console.log(this.grupos)
-
         },
         error: (error) => {
           this.isLoading = false;
@@ -64,16 +54,15 @@ export class ListaGruposComponent implements OnInit {
       });
   }
 
-
   actualizarPaginacion(datos: PageEvent){
     this.paginaActual = datos.pageIndex +1;
     this.cantidadRegistrosAMostrar = datos.pageSize;
 
-    this.obtenerGruposPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+    this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
 
   }
 
-  confirmarActivar(idGrupo: number) {
+  confirmarActivar(idMateria: number) {
     Swal.fire({
       title: 'Activar',
       text: '¿Estás seguro?',
@@ -86,16 +75,16 @@ export class ListaGruposComponent implements OnInit {
       iconColor: '#6A6A6C',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.activar(idGrupo);
+        this.activar(idMateria);
       }
     });
   }
 
-  activar(idGrupo: number) {
-    this.gruposService.activar(idGrupo).subscribe({
+  activar(idMateria: number) {
+    this.materiasService.activar(idMateria).subscribe({
       next: () => {
         this.isLoading = false;
-        this.obtenerGruposPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+        this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
         this.notify.successfulNotification('¡Activado!');
       },
       error: (error) => {
@@ -105,7 +94,7 @@ export class ListaGruposComponent implements OnInit {
     });
   }
 
-  confirmarDesactivar(idGrupo: number) {
+  confirmarDesactivar(idMateria: number) {
     Swal.fire({
       title: 'Desactivar',
       text: '¿Estás seguro?',
@@ -118,16 +107,16 @@ export class ListaGruposComponent implements OnInit {
       iconColor: '#6A6A6C',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.desactivar(idGrupo);
+        this.desactivar(idMateria);
       }
     });
   }
 
-  desactivar(idGrupo: number) {
-    this.gruposService.descativar(idGrupo).subscribe({
+  desactivar(idMateria: number) {
+    this.materiasService.descativar(idMateria).subscribe({
       next: () => {
         this.isLoading = false;
-        this.obtenerGruposPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+        this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
         this.notify.successfulNotification('¡Desactivado!');
       },
       error: (error) => {
