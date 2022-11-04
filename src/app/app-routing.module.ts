@@ -8,52 +8,46 @@ import { EditarMateriaComponent } from './administrador/materias/editar-materia/
 import { ListaMateriasComponent } from './administrador/materias/lista-materias/lista-materias.component';
 
 const routes: Routes = [
- 
- 
- 
   //GRUPOS
   {
     path: 'grupos',
-    component: ListaGruposComponent
+    component: ListaGruposComponent,
   },
   {
     path: 'grupos/crear',
-    component: CrearGrupoComponent
+    component: CrearGrupoComponent,
   },
   {
     path: 'grupos/editar/:id',
-    component: EditarGrupoComponent
+    component: EditarGrupoComponent,
   },
 
-
-  //MATERIAS  
+  //MATERIAS
   {
-    path : 'materias',
-    component : ListaMateriasComponent
+    path: 'materias',
+    component: ListaMateriasComponent,
   },
   {
-    path : 'materias/crear',
-    component : CrearMateriaComponent
+    path: 'materias/crear',
+    component: CrearMateriaComponent,
   },
   {
     path: 'materias/editar/:id',
-    component: EditarMateriaComponent
+    component: EditarMateriaComponent,
   },
-
-
-
   {
     path: '',
-    component: CrearMateriaComponent
+    component: CrearMateriaComponent,
   },
   // home page
   {
-    path: '*', redirectTo: ''
-  }
+    path: '*',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
