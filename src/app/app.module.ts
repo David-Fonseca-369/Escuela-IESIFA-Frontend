@@ -33,6 +33,7 @@ import { NotifyComponent } from './snackBars/notify/notify.component';
 import { ListaMateriasComponent } from './administrador/materias/lista-materias/lista-materias.component';
 import { FormularioMateriaComponent } from './administrador/materias/formulario-materia/formulario-materia.component';
 import { EditarMateriaComponent } from './administrador/materias/editar-materia/editar-materia.component';
+import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EditarMateriaComponent } from './administrador/materias/editar-materia/
     ListaMateriasComponent,
     FormularioMateriaComponent,
     EditarMateriaComponent,
+    ListaUsuariosComponent,
   ],
   imports: [
     BrowserModule,

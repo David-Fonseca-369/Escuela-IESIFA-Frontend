@@ -92,6 +92,7 @@ export class ListaGruposComponent implements OnInit {
   }
 
   activar(idGrupo: number) {
+    this.isLoading = true;
     this.gruposService.activar(idGrupo).subscribe({
       next: () => {
         this.isLoading = false;
@@ -124,6 +125,7 @@ export class ListaGruposComponent implements OnInit {
   }
 
   desactivar(idGrupo: number) {
+    this.isLoading = true;
     this.gruposService.descativar(idGrupo).subscribe({
       next: () => {
         this.isLoading = false;

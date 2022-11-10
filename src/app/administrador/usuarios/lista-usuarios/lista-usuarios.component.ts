@@ -1,48 +1,52 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import { materiaDTO } from '../materia';
-import { MateriasService } from '../materias.service';
+import { usuarioDTO } from '../usuario';
+import { UsuariosService } from '../usuarios.service';
 
 @Component({
-  selector: 'app-lista-materias',
-  templateUrl: './lista-materias.component.html',
-  styleUrls: ['./lista-materias.component.css'],
+  selector: 'app-lista-usuarios',
+  templateUrl: './lista-usuarios.component.html',
+  styleUrls: ['./lista-usuarios.component.css']
 })
-export class ListaMateriasComponent implements OnInit {
+export class ListaUsuariosComponent implements OnInit {
+
   isLoading = false;
-  materias: materiaDTO[];
-  errores: string[] = [];
+  usuarios : usuarioDTO[];
 
-  columnasAMostrar = ['nombre', 'nombreGrupo', 'estado', 'opciones'];
+    //paginacion
+    cantidadTotalRegistros;
+    paginaActual = 1;
+    cantidadRegistrosAMostrar = 10;
 
-  //paginacion
-  cantidadTotalRegistros;
-  paginaActual = 1;
-  cantidadRegistrosAMostrar = 10;
+    errores : string[] = [];
 
-  constructor(private materiasService: MateriasService,
-    private notify : NotifyService) {}
+    columnasAMostrar = ['nombre', 'nombreRol', 'correo', 'estado', 'opciones']
+
+  constructor(private usuariosService : UsuariosService,
+    private notify : NotifyService) { }
 
   ngOnInit(): void {
-    this.obtenerMateriasPaginacion(
-      this.paginaActual,
-      this.cantidadRegistrosAMostrar
-    );
+
+    this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
   }
 
-  obtenerMateriasPaginacion(pagina: number, cantidadRegistrosAMostrar: number) {
+  
+  obtenerUsuariosPaginacion(pagina: number, cantidadRegistrosAMostrar: number) {
     this.isLoading = true;
-    this.materiasService
+    this.usuariosService
       .todosPaginacion(pagina, cantidadRegistrosAMostrar)
       .subscribe({
-        next: (response: HttpResponse<materiaDTO[]>) => {
+        next: (response: HttpResponse<usuarioDTO[]>) => {
           this.isLoading = false;
 
-          this.materias = response.body;
+          this.usuarios = response.body;
+
+          console.log(this.usuarios);
           this.cantidadTotalRegistros = response.headers.get(
             'cantidadTotalRegistros'
           );
@@ -54,15 +58,7 @@ export class ListaMateriasComponent implements OnInit {
       });
   }
 
-  actualizarPaginacion(datos: PageEvent){
-    this.paginaActual = datos.pageIndex +1;
-    this.cantidadRegistrosAMostrar = datos.pageSize;
-
-    this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
-
-  }
-
-  confirmarActivar(idMateria: number) {
+  confirmarActivar(idUsuario: number) {
     Swal.fire({
       title: 'Activar',
       text: '¿Estás seguro?',
@@ -75,17 +71,25 @@ export class ListaMateriasComponent implements OnInit {
       iconColor: '#6A6A6C',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.activar(idMateria);
+        this.activar(idUsuario);
       }
     });
   }
 
-  activar(idMateria: number) {
+  actualizarPaginacion(datos: PageEvent){
+    this.paginaActual = datos.pageIndex +1;
+    this.cantidadRegistrosAMostrar = datos.pageSize;
+
+    this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+
+  }
+
+  activar(idUsuario: number) {
     this.isLoading = true;
-    this.materiasService.activar(idMateria).subscribe({
+    this.usuariosService.activar(idUsuario).subscribe({
       next: () => {
         this.isLoading = false;
-        this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+        this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
         this.notify.successfulNotification('¡Activado!');
       },
       error: (error) => {
@@ -95,7 +99,7 @@ export class ListaMateriasComponent implements OnInit {
     });
   }
 
-  confirmarDesactivar(idMateria: number) {
+  confirmarDesactivar(idUsuario: number) {
     Swal.fire({
       title: 'Desactivar',
       text: '¿Estás seguro?',
@@ -108,17 +112,18 @@ export class ListaMateriasComponent implements OnInit {
       iconColor: '#6A6A6C',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.desactivar(idMateria);
+        this.desactivar(idUsuario);
       }
     });
   }
 
-  desactivar(idMateria: number) {
+  desactivar(idUsuario: number) {
     this.isLoading = true;
-    this.materiasService.descativar(idMateria).subscribe({
+
+    this.usuariosService.descativar(idUsuario).subscribe({
       next: () => {
         this.isLoading = false;
-        this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+        this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
         this.notify.successfulNotification('¡Desactivado!');
       },
       error: (error) => {
@@ -127,4 +132,7 @@ export class ListaMateriasComponent implements OnInit {
       },
     });
   }
+
+
+
 }

@@ -24,11 +24,18 @@
     </button>
     <button
       mat-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
+      [matMenuTriggerFor]="menuUsuarios"
     >
-      Docentes <mat-icon>arrow_drop_down</mat-icon>
+      Usuarios <mat-icon>arrow_drop_down</mat-icon>
+
+      <mat-menu #menuUsuarios="matMenu">
+        <button routerLink="usuarios/crear" mat-menu-item>Nuevo Usuario</button>
+        <button routerLink="usuarios" mat-menu-item>Usuarios</button>
+      </mat-menu>
+
     </button>
+
+
     <button mat-button [matMenuTriggerFor]="menuMaterias">
       Materias <mat-icon>arrow_drop_down</mat-icon>
     </button>

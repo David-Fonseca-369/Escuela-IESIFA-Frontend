@@ -6,6 +6,7 @@ import { ListaGruposComponent } from './administrador/grupos/lista-grupos/lista-
 import { CrearMateriaComponent } from './administrador/materias/crear-materia/crear-materia.component';
 import { EditarMateriaComponent } from './administrador/materias/editar-materia/editar-materia.component';
 import { ListaMateriasComponent } from './administrador/materias/lista-materias/lista-materias.component';
+import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
 
 const routes: Routes = [
   //GRUPOS
@@ -39,6 +40,13 @@ const routes: Routes = [
     path: '',
     component: CrearMateriaComponent,
   },
+
+  //USUARIOS
+  {
+    path: 'usuarios',
+    component: ListaUsuariosComponent,
+  },
+
   // home page
   {
     path: '*',
