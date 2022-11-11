@@ -6,6 +6,8 @@ import { ListaGruposComponent } from './administrador/grupos/lista-grupos/lista-
 import { CrearMateriaComponent } from './administrador/materias/crear-materia/crear-materia.component';
 import { EditarMateriaComponent } from './administrador/materias/editar-materia/editar-materia.component';
 import { ListaMateriasComponent } from './administrador/materias/lista-materias/lista-materias.component';
+import { CrearUsuarioComponent } from './administrador/usuarios/crear-usuario/crear-usuario.component';
+import { EditarUsuarioComponent } from './administrador/usuarios/editar-usuario/editar-usuario.component';
 import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
 
 const routes: Routes = [
@@ -45,6 +47,14 @@ const routes: Routes = [
   {
     path: 'usuarios',
     component: ListaUsuariosComponent,
+  },
+  {
+    path: 'usuarios/crear',
+    component: CrearUsuarioComponent
+  },
+  {
+    path: 'usuarios/editar/:id',
+    component: EditarUsuarioComponent
   },
 
   // home page

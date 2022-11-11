@@ -1,3 +1,5 @@
+import {  FormGroup } from "@angular/forms";
+
 export function parsearErroresAPI(response: any): string[]{
 	
 	const resultado: string[] = [];
@@ -22,4 +24,30 @@ export function parsearErroresAPI(response: any): string[]{
 	}
 
 	return resultado;
+}
+
+
+//Validador de errores genérico
+export function obtenerErroresGenerico(nombreCampo : string, nombreMostrar, form : FormGroup): string{
+
+ const campo  = form.get(nombreCampo);
+
+ if(campo.hasError('required')){
+	return `El campo ${nombreMostrar} es requerido.`;
+ }
+
+ if(campo.hasError('maxlength')){
+	return `La longitud máxima es de 60 caracteres.`;
+ }
+
+ if(campo.hasError('minlength')){
+	return `La longitud mínima es de 8 caracteres.`;
+ }
+
+ if(campo.hasError('email')){
+	return `Debe ingresar un email valido.`;
+ }
+
+return '';
+
 }
