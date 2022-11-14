@@ -1,4 +1,4 @@
-export interface nivelEducativoDTO {
+export interface NivelEducativoDTO {
     id : number;
     nombre : string;
 }

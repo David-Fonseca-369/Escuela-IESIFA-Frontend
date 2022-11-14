@@ -1,1 +1,89 @@
-<p>editar-usuario works!</p>
+<app-spinner [isLoading]="isLoading"></app-spinner>
+<h1>Editar Usuario</h1>
+<form [formGroup]="form">
+  <div class="form">
+    <mat-form-field style="width: 50%">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="idRol" placeholder="Selecciona un rol">
+        <mat-option *ngFor="let rol of roles" [value]="rol.id">
+          {{ rol.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error>El campo Rol es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input formControlName="nombre" matInput />
+      <mat-error *ngIf="form.invalid">
+        {{ obtenerErrorGenerico("nombre", "Nombre", undefined, 60) }}</mat-error
+      >
+    </mat-form-field>
+
+    <div class="inputs">
+      <mat-form-field>
+        <mat-label>Apellido Paterno</mat-label>
+        <input formControlName="apellidoPaterno" matInput />
+        <mat-error *ngIf="form.invalid">
+          {{
+            obtenerErrorGenerico(
+              "apellidoPaterno",
+              "Apellido Paterno",
+              undefined,
+              60
+            )
+          }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Apellido Materno</mat-label>
+        <input formControlName="apellidoMaterno" matInput />
+        <mat-error *ngIf="form.invalid">
+          {{
+            obtenerErrorGenerico(
+              "apellidoMaterno",
+              "Apellido Materno",
+              undefined,
+              60
+            )
+          }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Correo</mat-label>
+      <input formControlName="correo" matInput />
+      <mat-error *ngIf="form.invalid">
+        {{ obtenerErrorGenerico("correo", "Correo", undefined, 60) }}
+      </mat-error>
+    </mat-form-field>
+    <div class="inputs">
+      <mat-checkbox color="primary" (change)="cambiarPasswordCheck()" formControlName="cambiarPassword">
+        Cambiar Contraseña
+      </mat-checkbox>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput />
+        <mat-error *ngIf="form.invalid">
+          {{ obtenerErrorGenerico("password", "Password", 8, 60) }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button
+      type="button"
+      mat-flat-button
+      class="button-primary"
+      [disabled]="form.invalid"
+      (click)="guardarCambios()"
+    >
+      Guardar
+    </button>
+    <a mat-stroked-button routerLink="/usuarios"> Cancelar </a>
+  </div>
+</form>
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>

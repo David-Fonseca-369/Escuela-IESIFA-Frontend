@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { materiaCrearDTO, materiaDTO, materiaEditarDTO } from './materia';
+import { MateriaCrearDTO, MateriaDTO, MateriaEditarDTO } from './materia';
 
 @Injectable({
   providedIn: 'root'
@@ -22,17 +22,17 @@ export class MateriasService {
     params = params.append('pagina', pagina.toString());
     params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
 
-    return this.http.get<materiaDTO[]>(`${this.apiURL}/todosPaginacion`,{ observe: 'response', params});
+    return this.http.get<MateriaDTO[]>(`${this.apiURL}/todosPaginacion`,{ observe: 'response', params});
   }
 
-  public obtenerPorId(id: number): Observable<materiaEditarDTO> {
-    return this.http.get<materiaEditarDTO>(`${this.apiURL}/${id}`);
+  public obtenerPorId(id: number): Observable<MateriaEditarDTO> {
+    return this.http.get<MateriaEditarDTO>(`${this.apiURL}/${id}`);
   }
 
-  public crear(grupo: materiaCrearDTO): Observable<any> {
+  public crear(grupo: MateriaCrearDTO): Observable<any> {
     return this.http.post(`${this.apiURL}/crear`, grupo);
   }
-  public editar(grupo: materiaCrearDTO, id: number): Observable<any> {
+  public editar(grupo: MateriaCrearDTO, id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/editar/${id}`, grupo);
   }
 

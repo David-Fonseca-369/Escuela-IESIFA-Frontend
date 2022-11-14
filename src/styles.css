@@ -1,15 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* html, body { height: 100%; } */
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-
-.button-primary{
-    background: #071A4E;
-    color: white;
+.button-primary {
+  background: #071a4e;
+  color: white;
 }
 
 /* color de exitoso del stack bar */
-.green-stackbar{
-    background: #57986C;
-  }
+.green-stackbar {
+  background: #57986c;
+}
+
+
+h1{
+    font-weight: 500;
+}

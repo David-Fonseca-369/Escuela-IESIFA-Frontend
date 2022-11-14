@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { obtenerErroresGenerico, parsearErroresAPI } from 'src/app/helpers/helpers';
-import { rolDTO } from 'src/app/services/models/roles/rol';
+import { RolDTO } from 'src/app/services/models/roles/rol';
 import { NotifyService } from 'src/app/services/notify.service';
 import { RolesService } from 'src/app/services/roles.service';
 import { UsuariosService } from '../usuarios.service';
@@ -15,7 +15,7 @@ import { UsuariosService } from '../usuarios.service';
 export class CrearUsuarioComponent implements OnInit {
   isLoading = false;
   errores: string[] = [];
-  roles: rolDTO[];
+  roles: RolDTO[];
 
   form: FormGroup;
 
@@ -103,7 +103,7 @@ export class CrearUsuarioComponent implements OnInit {
     });
   }
 
-  obtenerErrorGenerico(nombreCampo : string, nombreMostrar): string{
-  return obtenerErroresGenerico(nombreCampo,nombreMostrar, this.form );
+  obtenerErrorGenerico(nombreCampo : string, nombreMostrar:string, minLength?:number, maxLength?: number): string{  
+  return obtenerErroresGenerico(nombreCampo,nombreMostrar, this.form, minLength, maxLength );
   }
 }

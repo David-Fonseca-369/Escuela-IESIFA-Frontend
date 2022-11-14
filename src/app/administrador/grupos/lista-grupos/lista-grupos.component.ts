@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
 import Swal from 'sweetalert2';
-import { grupoDTO } from '../grupo';
+import { GrupoDTO } from '../grupo';
 import { GruposService } from '../grupos.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { GruposService } from '../grupos.service';
 })
 export class ListaGruposComponent implements OnInit {
   isLoading = false;
-  grupos: grupoDTO[];
+  grupos: GrupoDTO[];
   errores: string[] = [];
   columnasAMostrar = [
     'nombre',
@@ -46,7 +46,7 @@ export class ListaGruposComponent implements OnInit {
     this.gruposService
       .todosPaginacion(pagina, cantidadRegistrosAMostrar)
       .subscribe({
-        next: (response: HttpResponse<grupoDTO[]>) => {
+        next: (response: HttpResponse<GrupoDTO[]>) => {
           this.isLoading = false;
 
           this.grupos = response.body;

@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from "./material/material.module";
-import {MenuComponent}from "./menu/menu.component";
+import { MaterialModule } from './material/material.module';
+import { MenuComponent } from './menu/menu.component';
 import { CrearMateriaComponent } from './administrador/materias/crear-materia/crear-materia.component';
 import { CrearGrupoComponent } from './administrador/grupos/crear-grupo/crear-grupo.component';
-import { ListaGruposComponent } from "./administrador/grupos/lista-grupos/lista-grupos.component";
+import { ListaGruposComponent } from './administrador/grupos/lista-grupos/lista-grupos.component';
 
 //mensajes sweet alert
 ////v11.0.0
@@ -16,13 +16,12 @@ import { ListaGruposComponent } from "./administrador/grupos/lista-grupos/lista-
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
-
 //Formularios Reactivos
 //Binding de doble via
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //Para consumir APIs
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 //componentes
 import { FormularioGrupoComponent } from './administrador/grupos/formulario-grupo/formulario-grupo.component';
@@ -36,7 +35,6 @@ import { EditarMateriaComponent } from './administrador/materias/editar-materia/
 import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
 import { CrearUsuarioComponent } from './administrador/usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './administrador/usuarios/editar-usuario/editar-usuario.component';
-import { FormularioUsuarioComponent } from './administrador/usuarios/formulario-usuario/formulario-usuario.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +54,6 @@ import { FormularioUsuarioComponent } from './administrador/usuarios/formulario-
     ListaUsuariosComponent,
     CrearUsuarioComponent,
     EditarUsuarioComponent,
-    FormularioUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,9 +63,9 @@ import { FormularioUsuarioComponent } from './administrador/usuarios/formulario-
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SweetAlert2Module
+    SweetAlert2Module,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

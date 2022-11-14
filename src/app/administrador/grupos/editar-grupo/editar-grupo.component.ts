@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
-import { grupoCrearDTO, grupoDTO, grupoEditarDTO } from '../grupo';
+import { GrupoCrearDTO, GrupoEditarDTO } from '../grupo';
 import { GruposService } from '../grupos.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { GruposService } from '../grupos.service';
 })
 export class EditarGrupoComponent implements OnInit {
   errores: string[] = [];
-  grupo: grupoEditarDTO;
+  grupo: GrupoEditarDTO;
   isLoading = false;
 
   constructor(
@@ -46,7 +46,7 @@ export class EditarGrupoComponent implements OnInit {
     
     this.isLoading = true;
 
-    let grupo: grupoCrearDTO = {
+    let grupo: GrupoCrearDTO = {
       idGrado: event.idGrado,
       nombre: event.nombre,
     };

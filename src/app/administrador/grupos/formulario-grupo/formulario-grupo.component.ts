@@ -4,10 +4,10 @@ import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { group } from 'console';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { GradosService } from 'src/app/services/grados.service';
-import { gradoSelectorDTO } from 'src/app/services/models/grados/grado';
-import { nivelEducativoDTO } from 'src/app/services/models/niveles-educativos/nivelEducativo';
+import { GradoSelectorDTO } from 'src/app/services/models/grados/grado';
+import { NivelEducativoDTO } from 'src/app/services/models/niveles-educativos/nivelEducativo';
 import { NivelEducativoService } from 'src/app/services/nivel-educativo.service';
-import { grupoCrearDTO, grupoDTO, grupoEditarDTO } from '../grupo';
+import { GrupoCrearDTO, GrupoEditarDTO } from '../grupo';
 
 @Component({
   selector: 'app-formulario-grupo',
@@ -18,17 +18,17 @@ export class FormularioGrupoComponent implements OnInit {
   form: FormGroup;
 
   @Input()
-  grupo: grupoEditarDTO;
+  grupo: GrupoEditarDTO;
 
   @Input()
   errores: string[] = [];
 
   @Output()
-  onSubmit: EventEmitter<grupoCrearDTO> = new EventEmitter<grupoCrearDTO>();
+  onSubmit: EventEmitter<GrupoCrearDTO> = new EventEmitter<GrupoCrearDTO>();
 
-  nivelesEducativos: nivelEducativoDTO[];
+  nivelesEducativos: NivelEducativoDTO[];
 
-  grados: gradoSelectorDTO[];
+  grados: GradoSelectorDTO[];
   isLoading = false;
 
   constructor(

@@ -1,4 +1,4 @@
-export interface usuarioDTO {
+export interface UsuarioDTO {
   id: number;
   idRol: number;
   nombreRol: string;
@@ -9,7 +9,7 @@ export interface usuarioDTO {
   estado: boolean;
 }
 
-export interface usuarioCreacionDTO {
+export interface UsuarioCreacionDTO {
   idRol: number;
   nombre: string;
   apellidoPaterno: string;
@@ -20,7 +20,7 @@ export interface usuarioCreacionDTO {
 }
 
 
-export interface usuarioEditarDTO {
+export interface UsuarioEditarDTO {
     idRol: number;
     nombre: string;
     apellidoPaterno: string;

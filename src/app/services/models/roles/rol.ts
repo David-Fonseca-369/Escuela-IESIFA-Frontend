@@ -1,4 +1,4 @@
-export interface rolDTO{
+export interface RolDTO{
     id: number;
     nombre : string;    
 }

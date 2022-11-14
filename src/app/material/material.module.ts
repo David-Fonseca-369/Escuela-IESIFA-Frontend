@@ -15,6 +15,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { MatCheckboxModule } from "@angular/material/checkbox";
+
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -30,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSnackBarModule,
     MatPaginatorModule,
     MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [
     //Para que siempre se mantenga flotante el label y la apariencia sea outline

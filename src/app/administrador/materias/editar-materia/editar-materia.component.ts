@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
-import { materiaEditarDTO } from '../materia';
+import { MateriaEditarDTO } from '../materia';
 import { MateriasService } from '../materias.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { MateriasService } from '../materias.service';
 export class EditarMateriaComponent implements OnInit {
   errores: string[] = [];
   isLoading = false;
-  materia: materiaEditarDTO;
+  materia: MateriaEditarDTO;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,7 +36,7 @@ export class EditarMateriaComponent implements OnInit {
         },
         error: () => {
           this.isLoading = false;
-         this.router.navigate(['/materias'])
+          this.router.navigate(['/materias']);
         },
       });
     });
@@ -48,7 +48,7 @@ export class EditarMateriaComponent implements OnInit {
     this.materiasService.editar(event, this.materia.id).subscribe({
       next: () => {
         this.isLoading = false;
-        this.notify.successfulNotification("¡Modificado!");
+        this.notify.successfulNotification('¡Modificado!');
         this.router.navigate(['/materias']);
       },
       error: (error) => {

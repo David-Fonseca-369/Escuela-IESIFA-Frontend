@@ -2,37 +2,41 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { usuarioCreacionDTO, usuarioDTO, usuarioEditarDTO } from './usuario';
+import { UsuarioCreacionDTO, UsuarioDTO, UsuarioEditarDTO } from './usuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuariosService {
+  private apiURL = environment.apiURL + 'usuarios';
 
-  private apiURL = environment.apiURL + 'usuarios'
-
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public todosPaginacion(
     pagina: number,
     cantidadRegistrosAMostrar: number
   ): Observable<any> {
-
     let params = new HttpParams();
     params = params.append('pagina', pagina.toString());
-    params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
+    params = params.append(
+      'recordsPorPagina',
+      cantidadRegistrosAMostrar.toString()
+    );
 
-    return this.http.get<usuarioDTO[]>(`${this.apiURL}/todosPaginacion`,{ observe: 'response', params});
+    return this.http.get<UsuarioDTO[]>(`${this.apiURL}/todosPaginacion`, {
+      observe: 'response',
+      params,
+    });
   }
 
-  // public obtenerPorId(id: number): Observable<usuarioEditarDTO> {
-  //   return this.http.get<usuarioEditarDTO>(`${this.apiURL}/${id}`);
-  // }
+  public obtenerPorId(id: number): Observable<UsuarioDTO> {
+    return this.http.get<UsuarioDTO>(`${this.apiURL}/${id}`);
+  }
 
-  public crear(grupo: usuarioCreacionDTO): Observable<any> {
+  public crear(grupo: UsuarioCreacionDTO): Observable<any> {
     return this.http.post(`${this.apiURL}/crear`, grupo);
   }
-  public editar(grupo: usuarioEditarDTO, id: number): Observable<any> {
+  public editar(grupo: UsuarioEditarDTO, id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/editar/${id}`, grupo);
   }
 
@@ -42,5 +46,4 @@ export class UsuariosService {
   public descativar(id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/desactivar/${id}`, null);
   }
-
 }

@@ -1,0 +1,23 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.inputs{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputs mat-form-field{
+    width: 48%;
+}
+
+
+.buttons button{
+    margin-right: 1rem;
+}
+
+.buttons {
+    margin-top:1rem;
+}

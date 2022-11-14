@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
 import Swal from 'sweetalert2';
-import { materiaDTO } from '../materia';
+import { MateriaDTO } from '../materia';
 import { MateriasService } from '../materias.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { MateriasService } from '../materias.service';
 })
 export class ListaMateriasComponent implements OnInit {
   isLoading = false;
-  materias: materiaDTO[];
+  materias: MateriaDTO[];
   errores: string[] = [];
 
   columnasAMostrar = ['nombre', 'nombreGrupo', 'estado', 'opciones'];
@@ -39,7 +39,7 @@ export class ListaMateriasComponent implements OnInit {
     this.materiasService
       .todosPaginacion(pagina, cantidadRegistrosAMostrar)
       .subscribe({
-        next: (response: HttpResponse<materiaDTO[]>) => {
+        next: (response: HttpResponse<MateriaDTO[]>) => {
           this.isLoading = false;
 
           this.materias = response.body;

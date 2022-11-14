@@ -2,9 +2,9 @@ import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
-import { grupoSelectorDTO } from '../../grupos/grupo';
+import { GrupoSelectorDTO } from '../../grupos/grupo';
 import { GruposService } from '../../grupos/grupos.service';
-import { materiaCrearDTO, materiaDTO, materiaEditarDTO } from '../materia';
+import { MateriaCrearDTO, MateriaEditarDTO } from '../materia';
 
 @Component({
   selector: 'app-formulario-materia',
@@ -12,7 +12,7 @@ import { materiaCrearDTO, materiaDTO, materiaEditarDTO } from '../materia';
   styleUrls: ['./formulario-materia.component.css'],
 })
 export class FormularioMateriaComponent implements OnInit {
-  grupos: grupoSelectorDTO[];
+  grupos: GrupoSelectorDTO[];
 
   isLoading = false;
 
@@ -20,10 +20,10 @@ export class FormularioMateriaComponent implements OnInit {
   errores : string[] = [];
 
   @Output()
-  onSubmit : EventEmitter<materiaCrearDTO> = new EventEmitter<materiaCrearDTO>();
+  onSubmit : EventEmitter<MateriaCrearDTO> = new EventEmitter<MateriaCrearDTO>();
 
   @Input()
-  materia : materiaEditarDTO;
+  materia : MateriaEditarDTO;
 
   form : FormGroup;
 

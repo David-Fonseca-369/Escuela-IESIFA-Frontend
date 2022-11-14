@@ -1,4 +1,4 @@
-export interface grupoDTO{
+export interface GrupoDTO{
     id: number;
     idGrado : number;
     nombreGrado : string;
@@ -7,20 +7,20 @@ export interface grupoDTO{
     estado : boolean;
 }
 
-export interface grupoEditarDTO{
+export interface GrupoEditarDTO{
     id: number;
     idNivelEducativo: number;
     idGrado : number;
     nombre : string;
 }
 
-export interface grupoCrearDTO{
+export interface GrupoCrearDTO{
     idGrado : number;
     nombre : string;
 }
 
 
-export interface grupoSelectorDTO{
+export interface GrupoSelectorDTO{
     id: number;
     nombre : string;
 }

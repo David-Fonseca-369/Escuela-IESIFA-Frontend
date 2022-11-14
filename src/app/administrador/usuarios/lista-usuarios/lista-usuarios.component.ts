@@ -5,7 +5,7 @@ import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import { usuarioDTO } from '../usuario';
+import { UsuarioDTO } from '../usuario';
 import { UsuariosService } from '../usuarios.service';
 
 @Component({
@@ -16,7 +16,7 @@ import { UsuariosService } from '../usuarios.service';
 export class ListaUsuariosComponent implements OnInit {
 
   isLoading = false;
-  usuarios : usuarioDTO[];
+  usuarios : UsuarioDTO[];
 
     //paginacion
     cantidadTotalRegistros;
@@ -41,7 +41,7 @@ export class ListaUsuariosComponent implements OnInit {
     this.usuariosService
       .todosPaginacion(pagina, cantidadRegistrosAMostrar)
       .subscribe({
-        next: (response: HttpResponse<usuarioDTO[]>) => {
+        next: (response: HttpResponse<UsuarioDTO[]>) => {
           this.isLoading = false;
 
           this.usuarios = response.body;

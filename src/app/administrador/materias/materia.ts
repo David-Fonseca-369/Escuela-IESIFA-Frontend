@@ -1,10 +1,10 @@
-export interface materiaCrearDTO {
+export interface MateriaCrearDTO {
   idGrupo: number;
   nombre: string;
   descripcion: string;
 }
 
-export interface materiaDTO {
+export interface MateriaDTO {
   id: number;
   idGrupo: number;
   nombreGrupo: string;
@@ -13,7 +13,7 @@ export interface materiaDTO {
   estado: boolean;
 }
 
-export interface materiaEditarDTO{
+export interface MateriaEditarDTO{
     id: number;
     idGrupo : number;
     nombre : string;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
-import { grupoCrearDTO, grupoDTO } from '../grupo';
+import { GrupoCrearDTO } from '../grupo';
 import { GruposService } from '../grupos.service';
 
 @Component({
@@ -24,7 +24,7 @@ isLoading = false;
 
   guardarGrupo(event: any) {
     this.isLoading = true;
-    let grupo: grupoCrearDTO = {
+    let grupo: GrupoCrearDTO = {
       idGrado: event.idGrado,
       nombre: event.nombre,
     };
