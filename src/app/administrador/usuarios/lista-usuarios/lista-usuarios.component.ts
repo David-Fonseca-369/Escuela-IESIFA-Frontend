@@ -1,5 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
@@ -11,31 +12,64 @@ import { UsuariosService } from '../usuarios.service';
 @Component({
   selector: 'app-lista-usuarios',
   templateUrl: './lista-usuarios.component.html',
-  styleUrls: ['./lista-usuarios.component.css']
+  styleUrls: ['./lista-usuarios.component.css'],
 })
 export class ListaUsuariosComponent implements OnInit {
-
   isLoading = false;
-  usuarios : UsuarioDTO[];
+  usuarios: UsuarioDTO[];
 
-    //paginacion
-    cantidadTotalRegistros;
-    paginaActual = 1;
-    cantidadRegistrosAMostrar = 10;
+  //paginacion
+  cantidadTotalRegistros;
+  paginaActual = 1;
+  cantidadRegistrosAMostrar = 10;
 
-    errores : string[] = [];
+  errores: string[] = [];
 
-    columnasAMostrar = ['nombre', 'nombreRol', 'correo', 'estado', 'opciones']
+  columnasAMostrar = ['nombre', 'nombreRol', 'correo', 'estado', 'opciones'];
+  form: FormGroup;
 
-  constructor(private usuariosService : UsuariosService,
-    private notify : NotifyService) { }
+  constructor(
+    private usuariosService: UsuariosService,
+    private notify: NotifyService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.obtenerUsuariosPaginacion(
+      this.paginaActual,
+      this.cantidadRegistrosAMostrar
+    );
 
-    this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+    this.loadForm();
+
+
+    this.form.valueChanges.subscribe((values) => {
+      this.searchEmployees(values)
+    })
   }
 
-  
+  loadForm() {
+    this.form = this.formBuilder.group({
+      text: '',
+    });
+  }
+
+  searchEmployees(values:any){
+    
+    this.isLoading = true;
+    values.pagina = this.paginaActual;
+    values.recordsPorPagina = this.cantidadRegistrosAMostrar;
+
+    this.usuariosService.filtrar(values).subscribe({
+      next: (response)=> {
+        this.usuarios = response.body;
+        this.cantidadTotalRegistros = response.headers.get('cantidadTotalRegistros');
+        this.isLoading = false
+      }
+    })
+
+  }
+
   obtenerUsuariosPaginacion(pagina: number, cantidadRegistrosAMostrar: number) {
     this.isLoading = true;
     this.usuariosService
@@ -76,12 +110,14 @@ export class ListaUsuariosComponent implements OnInit {
     });
   }
 
-  actualizarPaginacion(datos: PageEvent){
-    this.paginaActual = datos.pageIndex +1;
+  actualizarPaginacion(datos: PageEvent) {
+    this.paginaActual = datos.pageIndex + 1;
     this.cantidadRegistrosAMostrar = datos.pageSize;
 
-    this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
-
+    this.obtenerUsuariosPaginacion(
+      this.paginaActual,
+      this.cantidadRegistrosAMostrar
+    );
   }
 
   activar(idUsuario: number) {
@@ -89,7 +125,10 @@ export class ListaUsuariosComponent implements OnInit {
     this.usuariosService.activar(idUsuario).subscribe({
       next: () => {
         this.isLoading = false;
-        this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+        this.obtenerUsuariosPaginacion(
+          this.paginaActual,
+          this.cantidadRegistrosAMostrar
+        );
         this.notify.successfulNotification('¡Activado!');
       },
       error: (error) => {
@@ -123,7 +162,10 @@ export class ListaUsuariosComponent implements OnInit {
     this.usuariosService.descativar(idUsuario).subscribe({
       next: () => {
         this.isLoading = false;
-        this.obtenerUsuariosPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);
+        this.obtenerUsuariosPaginacion(
+          this.paginaActual,
+          this.cantidadRegistrosAMostrar
+        );
         this.notify.successfulNotification('¡Desactivado!');
       },
       error: (error) => {
@@ -132,7 +174,4 @@ export class ListaUsuariosComponent implements OnInit {
       },
     });
   }
-
-
-
 }

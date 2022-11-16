@@ -29,6 +29,15 @@ export class UsuariosService {
     });
   }
 
+  public filtrar(values: any) : Observable<any>{
+    const params = new HttpParams({ fromObject: values});
+
+    return this.http.get<UsuarioDTO[]>(`${this.apiURL}/filtrar`, {
+      params,
+      observe: 'response'
+    })
+  }
+
   public obtenerPorId(id: number): Observable<UsuarioDTO> {
     return this.http.get<UsuarioDTO>(`${this.apiURL}/${id}`);
   }
