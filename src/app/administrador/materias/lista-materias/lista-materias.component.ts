@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
 import { NotifyService } from 'src/app/services/notify.service';
@@ -16,6 +17,7 @@ export class ListaMateriasComponent implements OnInit {
   isLoading = false;
   materias: MateriaDTO[];
   errores: string[] = [];
+  form : FormGroup;
 
   columnasAMostrar = ['nombre', 'nombreGrupo', 'estado', 'opciones'];
 
@@ -25,13 +27,28 @@ export class ListaMateriasComponent implements OnInit {
   cantidadRegistrosAMostrar = 10;
 
   constructor(private materiasService: MateriasService,
-    private notify : NotifyService) {}
+    private notify : NotifyService,
+    private formBuilder : FormBuilder) {}
 
   ngOnInit(): void {
     this.obtenerMateriasPaginacion(
       this.paginaActual,
       this.cantidadRegistrosAMostrar
     );
+
+    this.loadForm();
+
+    this.form.valueChanges.subscribe((values)=> {
+      this.searchMaterias(values)
+    })
+
+  }
+
+  loadForm(){
+    this.form = this.formBuilder.group({
+      text : ''
+    });
+
   }
 
   obtenerMateriasPaginacion(pagina: number, cantidadRegistrosAMostrar: number) {
@@ -127,4 +144,24 @@ export class ListaMateriasComponent implements OnInit {
       },
     });
   }
+
+  searchMaterias(values:any){
+    
+    this.isLoading = true;
+    values.pagina = this.paginaActual;
+    values.recordsPorPagina = this.cantidadRegistrosAMostrar;
+
+    this.materiasService.filtrar(values).subscribe({
+      next: (response)=> {
+        this.materias = response.body;
+        this.cantidadTotalRegistros = response.headers.get('cantidadTotalRegistros');
+        this.isLoading = false
+      }
+    })
+
+  }
+
+
+
+
 }

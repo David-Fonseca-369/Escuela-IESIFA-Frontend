@@ -25,6 +25,16 @@ export class MateriasService {
     return this.http.get<MateriaDTO[]>(`${this.apiURL}/todosPaginacion`,{ observe: 'response', params});
   }
 
+  public filtrar(values: any) : Observable<any>{
+    const params = new HttpParams({ fromObject: values});
+
+    return this.http.get<MateriaDTO[]>(`${this.apiURL}/filtrar`, {
+      params,
+      observe: 'response'
+    })
+  }
+
+
   public obtenerPorId(id: number): Observable<MateriaEditarDTO> {
     return this.http.get<MateriaEditarDTO>(`${this.apiURL}/${id}`);
   }

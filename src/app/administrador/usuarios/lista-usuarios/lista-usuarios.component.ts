@@ -44,7 +44,7 @@ export class ListaUsuariosComponent implements OnInit {
 
 
     this.form.valueChanges.subscribe((values) => {
-      this.searchEmployees(values)
+      this.searchUsuarios(values)
     })
   }
 
@@ -54,7 +54,7 @@ export class ListaUsuariosComponent implements OnInit {
     });
   }
 
-  searchEmployees(values:any){
+  searchUsuarios(values:any){
     
     this.isLoading = true;
     values.pagina = this.paginaActual;
