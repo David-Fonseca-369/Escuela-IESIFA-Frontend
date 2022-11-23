@@ -17,10 +17,15 @@
     <span class="example-spacer"></span>
     <button
       mat-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
+     [matMenuTriggerFor]="menuAlumnos"
     >
       Alumnos <mat-icon>arrow_drop_down</mat-icon>
+
+      <mat-menu #menuAlumnos="matMenu">
+        <button routerLink="alumnos/crear" mat-menu-item>Nuevo Alumno</button>
+        <button routerLink="alumnos" mat-menu-item>Alumnos</button>
+      </mat-menu>
+
     </button>
     <button
       mat-button

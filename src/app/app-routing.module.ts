@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CrearAlumnoComponent } from './administrador/alumnos/crear-alumno/crear-alumno.component';
+import { EditarAlumnoComponent } from './administrador/alumnos/editar-alumno/editar-alumno.component';
+import { ListaAlumnosComponent } from './administrador/alumnos/lista-alumnos/lista-alumnos.component';
 import { CrearGrupoComponent } from './administrador/grupos/crear-grupo/crear-grupo.component';
 import { EditarGrupoComponent } from './administrador/grupos/editar-grupo/editar-grupo.component';
 import { ListaGruposComponent } from './administrador/grupos/lista-grupos/lista-grupos.component';
@@ -50,11 +53,25 @@ const routes: Routes = [
   },
   {
     path: 'usuarios/crear',
-    component: CrearUsuarioComponent
+    component: CrearUsuarioComponent,
   },
   {
     path: 'usuarios/editar/:id',
-    component: EditarUsuarioComponent
+    component: EditarUsuarioComponent,
+  },
+
+  //ALUMNOS
+  {
+    path: 'alumnos',
+    component: ListaAlumnosComponent,
+  },
+  {
+    path: 'alumnos/crear',
+    component: CrearAlumnoComponent,
+  },
+  {
+    path: 'alumnos/editar/:id',
+    component: EditarAlumnoComponent,
   },
 
   // home page
