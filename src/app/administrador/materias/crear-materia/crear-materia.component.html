@@ -1,3 +1,11 @@
 <app-spinner [isLoading]="isLoading"></app-spinner>
-<h2>Crear Materia</h2>
-<app-formulario-materia (onSubmit)="guardarCambios($event)" [errores]="errores"></app-formulario-materia>
+
+<div class="container">
+  <div class="card">
+    <h2>Crear Materia</h2>
+    <app-formulario-materia
+      (onSubmit)="guardarCambios($event)"
+      [errores]="errores"
+    ></app-formulario-materia>
+  </div>
+</div>

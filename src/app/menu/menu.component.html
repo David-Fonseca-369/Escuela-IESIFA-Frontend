@@ -1,77 +1,93 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <span>IESIFA</span>
+    <a routerLink="landingPage" mat-button style="font-size: large">
+      <span>IESIFA</span>
+    </a>
+
     <span class="example-spacer"></span>
 
     <div class="example-icon">
-      <button mat-button>
-        <mat-icon>account_circle</mat-icon>
-        &nbsp;
-        <span>Emmanuel López Pichardo</span>
-      </button>
+      <app-authorized>
+        <ng-container autorizado>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>account_circle</mat-icon>
+            &nbsp;
+            <span>{{ getNombre() }}</span>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="securityService.cerrarSesion()">
+                <mat-icon style="color: red">logout</mat-icon>
+                <span style="color: red">Cerrar Sesión </span>
+              </button>
+            </mat-menu>
+          </button>
+        </ng-container>
+      </app-authorized>
     </div>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
     <!-- <span>Second Line</span> -->
     <span class="example-spacer"></span>
-    <button
-      mat-button
-     [matMenuTriggerFor]="menuAlumnos"
-    >
-      Alumnos <mat-icon>arrow_drop_down</mat-icon>
 
-      <mat-menu #menuAlumnos="matMenu">
-        <button routerLink="alumnos/crear" mat-menu-item>Nuevo Alumno</button>
-        <button routerLink="alumnos" mat-menu-item>Alumnos</button>
-      </mat-menu>
+    <app-authorized [rol]="'Administrador'">
+      <ng-container autorizado>
+        <button mat-button [matMenuTriggerFor]="menuAlumnos">
+          Alumnos <mat-icon>arrow_drop_down</mat-icon>
 
-    </button>
-    <button
-      mat-button
-      [matMenuTriggerFor]="menuUsuarios"
-    >
-      Usuarios <mat-icon>arrow_drop_down</mat-icon>
+          <mat-menu #menuAlumnos="matMenu">
+            <button routerLink="alumnos/crear" mat-menu-item>
+              Nuevo Alumno
+            </button>
+            <button routerLink="alumnos" mat-menu-item>Alumnos</button>
+          </mat-menu>
+        </button>
 
-      <mat-menu #menuUsuarios="matMenu">
-        <button routerLink="usuarios/crear" mat-menu-item>Nuevo Usuario</button>
-        <button routerLink="usuarios" mat-menu-item>Usuarios</button>
-      </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menuUsuarios">
+          Usuarios <mat-icon>arrow_drop_down</mat-icon>
 
-    </button>
+          <mat-menu #menuUsuarios="matMenu">
+            <button routerLink="usuarios/crear" mat-menu-item>
+              Nuevo Usuario
+            </button>
+            <button routerLink="usuarios" mat-menu-item>Usuarios</button>
+          </mat-menu>
+        </button>
 
+        <button mat-button [matMenuTriggerFor]="menuMaterias">
+          Materias <mat-icon>arrow_drop_down</mat-icon>
 
-    <button mat-button [matMenuTriggerFor]="menuMaterias">
-      Materias <mat-icon>arrow_drop_down</mat-icon>
-    </button>
+          <mat-menu #menuMaterias="matMenu">
+            <button routerLink="materias/crear" mat-menu-item>
+              Nueva Materia
+            </button>
+            <button routerLink="materias" mat-menu-item>Materias</button>
+          </mat-menu>
+        </button>
 
-    <mat-menu #menuMaterias="matMenu">
-      <button routerLink="materias/crear" mat-menu-item>Nueva Materia</button>
-      <button routerLink="materias" mat-menu-item>Materias</button>
-    </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menuGrupos">
+          Grupos <mat-icon>arrow_drop_down</mat-icon>
+          <mat-menu #menuGrupos="matMenu">
+            <button routerLink="grupos/crear" mat-menu-item>Nuevo Grupo</button>
+            <button routerLink="grupos" mat-menu-item>Grupos</button>
+          </mat-menu>
+        </button>
 
-    <!-- previo -->
-    <button mat-button [matMenuTriggerFor]="menuGrupos">
-      Grupos <mat-icon>arrow_drop_down</mat-icon>
-    </button>
-
-    <mat-menu #menuGrupos="matMenu">
-      <button routerLink="grupos/crear" mat-menu-item>Nuevo Grupo</button>
-      <button routerLink="grupos" mat-menu-item>Grupos</button>
-    </mat-menu>
-    <button
-      mat-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      Periodos <mat-icon>arrow_drop_down</mat-icon>
-    </button>
-    <button
-      mat-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      Pagos <mat-icon>arrow_drop_down</mat-icon>
-    </button>
+        <button
+          mat-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+        >
+          Periodos <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <button
+          mat-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+        >
+          Pagos <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+      </ng-container>
+    </app-authorized>
   </mat-toolbar-row>
 </mat-toolbar>

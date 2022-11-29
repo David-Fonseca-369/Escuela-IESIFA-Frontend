@@ -1,23 +1,34 @@
-.form{
-    display: flex;
-    flex-direction: column;
-    width: 60%;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.inputs{
-    display: flex;
-    justify-content: space-between;
+.card {
+  width: 50%;
+  background-color: white;
+  border: 1px solid #adb7d1;
+  padding: 1rem;
+  border-radius: 6px;
 }
 
-.inputs mat-form-field{
-    width: 48%;
+.form {
+  display: flex;
+  flex-direction: column;
 }
 
+.inputs {
+  display: flex;
+  justify-content: space-between;
+}
 
-.buttons button{
-    margin-right: 1rem;
+.inputs mat-form-field {
+  width: 48%;
+}
+
+.buttons button {
+  margin-right: 1rem;
 }
 
 .buttons {
-    margin-top:1rem;
+  margin-top: 1rem;
 }

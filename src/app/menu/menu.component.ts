@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SecurityService } from '../security/security.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public securityService : SecurityService) { }
 
   ngOnInit(): void {
+  }
+
+  getNombre(): string{
+    let nombre = localStorage.getItem('nombre');
+    let apellidoPaterno  = localStorage.getItem('apellidoPaterno');
+    let apellidoMaterno = localStorage.getItem('apellidoMaterno');
+
+
+    return `${nombre} ${apellidoPaterno} ${apellidoMaterno}`
   }
 
 }

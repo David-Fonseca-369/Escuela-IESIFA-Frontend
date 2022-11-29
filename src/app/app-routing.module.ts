@@ -12,6 +12,8 @@ import { ListaMateriasComponent } from './administrador/materias/lista-materias/
 import { CrearUsuarioComponent } from './administrador/usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './administrador/usuarios/editar-usuario/editar-usuario.component';
 import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
+import { LoginComponent } from './pages/authentication/login/login.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 const routes: Routes = [
   //GRUPOS
@@ -41,10 +43,7 @@ const routes: Routes = [
     path: 'materias/editar/:id',
     component: EditarMateriaComponent,
   },
-  {
-    path: '',
-    component: CrearMateriaComponent,
-  },
+ 
 
   //USUARIOS
   {
@@ -74,10 +73,23 @@ const routes: Routes = [
     component: EditarAlumnoComponent,
   },
 
+  //Login
+  
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+
   // home page
   {
+    path: 'landingPage',
+    component:LandingPageComponent,
+  },
+
+  {
     path: '*',
-    redirectTo: '',
+    redirectTo: 'login',
   },
 ];
 

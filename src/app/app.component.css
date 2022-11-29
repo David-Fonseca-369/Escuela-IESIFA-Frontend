@@ -1,3 +1,40 @@
 .container{
     margin: 1rem;
 }
+
+
+/* Color de borde normal*/
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: gray;
+  }
+  
+  /* Color placeholder normal */
+  /* ::ng-deep .mat-form-field-label {
+      color:#AAAAAA  !important;
+  } */
+  
+  
+  /* color focus de borde */
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick{
+      color: black !important
+  }
+  
+  /* Color focus del label pequeño */
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+      color: black !important;
+  }
+  
+  
+  /* Invlalid  */
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+    color: red !important;
+  }
+  
+  ::ng-deep .mat-form-field-invalid .mat-input-element, ::ng-deep .mat-warn .mat-input-element {
+    caret-color: red !important;
+  }
+  
+  ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: red !important;
+  }
+  

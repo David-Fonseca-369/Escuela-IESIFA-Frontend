@@ -42,7 +42,7 @@ export function obtenerErroresGenerico(
     return `El campo ${nombreMostrar} es requerido.`;
   }
 
-  //Logitud mínima
+  //Longitud mínima
 
   if (typeof minLength !== undefined) {
     if (campo.hasError('minlength')) {
@@ -50,7 +50,7 @@ export function obtenerErroresGenerico(
     }
   }
 
-  //Logitud máxima
+  //Longitud máxima
 
   if (typeof maxLength !== undefined) {
     if (campo.hasError('maxlength')) {

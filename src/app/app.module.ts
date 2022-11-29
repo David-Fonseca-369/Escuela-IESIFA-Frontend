@@ -38,6 +38,9 @@ import { EditarUsuarioComponent } from './administrador/usuarios/editar-usuario/
 import { ListaAlumnosComponent } from './administrador/alumnos/lista-alumnos/lista-alumnos.component';
 import { CrearAlumnoComponent } from './administrador/alumnos/crear-alumno/crear-alumno.component';
 import { EditarAlumnoComponent } from './administrador/alumnos/editar-alumno/editar-alumno.component';
+import { LoginComponent } from './pages/authentication/login/login.component';
+import { AuthorizedComponent } from './security/authorized/authorized.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,9 @@ import { EditarAlumnoComponent } from './administrador/alumnos/editar-alumno/edi
     ListaAlumnosComponent,
     CrearAlumnoComponent,
     EditarAlumnoComponent,
+    LoginComponent,
+    AuthorizedComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

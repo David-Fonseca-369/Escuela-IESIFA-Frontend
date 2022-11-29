@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 30%;
+    background-color: white;
+    border: 1px solid #adb7d1;
+    padding: 1rem;
+    border-radius: 6px;
+  }

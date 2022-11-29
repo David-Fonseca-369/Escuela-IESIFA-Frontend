@@ -1,9 +1,13 @@
 <app-spinner [isLoading]="isLoading"></app-spinner>
-<h2>Editar Materia</h2>
 
-<app-formulario-materia
-  *ngIf="materia"
-  [materia]="materia"
-  (onSubmit)="guardarCambios($event)"
-  [errores]="errores"
-></app-formulario-materia>
+<div class="container">
+  <div class="card">
+    <h2>Editar Materia</h2>
+    <app-formulario-materia
+      *ngIf="materia"
+      [materia]="materia"
+      (onSubmit)="guardarCambios($event)"
+      [errores]="errores"
+    ></app-formulario-materia>
+  </div>
+</div>

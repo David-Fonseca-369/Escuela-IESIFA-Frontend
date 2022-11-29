@@ -11,7 +11,7 @@
     #table
     mat-table
     [dataSource]="grupos"
-    class="mat-elevation-z4 tabla-grupos"
+    class="mat-elevation-z1 tabla-grupos"
   >
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
@@ -88,7 +88,7 @@
     </tr>
   </table>
   <mat-paginator
-    class="mat-elevation-z8"
+    class="mat-elevation-z1"
     [pageSizeOptions]="[5, 10, 20, 50]"
     showFirstLastButtons
     [length]="cantidadTotalRegistros"
