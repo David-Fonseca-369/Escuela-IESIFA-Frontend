@@ -18,6 +18,7 @@ export class CrearUsuarioComponent implements OnInit {
   roles: RolDTO[];
 
   form: FormGroup;
+  hide  = true;
 
   constructor(
     private rolesService: RolesService,

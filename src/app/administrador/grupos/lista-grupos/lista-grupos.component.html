@@ -37,8 +37,8 @@
     <ng-container matColumnDef="estado">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let grupo">
-        <span style="color: green" *ngIf="grupo.estado">Activo</span>
-        <span style="color: red" *ngIf="!grupo.estado">Desactivado</span>
+        <mat-icon style="color: green;" *ngIf="grupo.estado">check_circle</mat-icon>
+        <mat-icon style="color: red;" *ngIf="!grupo.estado">cancel</mat-icon>         
       </td>
     </ng-container>
 

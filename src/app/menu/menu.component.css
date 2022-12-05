@@ -1,10 +1,12 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
-
-
-  mat-toolbar{
-    background: #0B2875;
-    color: white;
-  }
+mat-toolbar {
+  background: #0b2875;
+  color: white;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}

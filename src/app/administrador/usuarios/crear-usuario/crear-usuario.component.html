@@ -68,10 +68,14 @@
 
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input formControlName="password" matInput />
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" />
+            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
             <mat-error *ngIf="form.invalid">
               {{ obtenerErrorGenerico("password", "Password", 8, 60) }}
             </mat-error>
+
           </mat-form-field>
         </div>
       </div>

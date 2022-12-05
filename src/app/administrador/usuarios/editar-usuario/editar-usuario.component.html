@@ -18,7 +18,7 @@
         <mat-form-field>
           <mat-label>Nombre</mat-label>
           <input formControlName="nombre" matInput />
-          <mat-error *ngIf="form.invalid">
+          <mat-error>
             {{
               obtenerErrorGenerico("nombre", "Nombre", undefined, 60)
             }}</mat-error
@@ -44,7 +44,7 @@
           <mat-form-field>
             <mat-label>Apellido Materno</mat-label>
             <input formControlName="apellidoMaterno" matInput />
-            <mat-error *ngIf="form.invalid">
+            <mat-error>
               {{
                 obtenerErrorGenerico(
                   "apellidoMaterno",
@@ -60,7 +60,7 @@
         <mat-form-field>
           <mat-label>Correo</mat-label>
           <input formControlName="correo" matInput />
-          <mat-error *ngIf="form.invalid">
+          <mat-error>
             {{ obtenerErrorGenerico("correo", "Correo", undefined, 60) }}
           </mat-error>
         </mat-form-field>
@@ -74,8 +74,21 @@
           </mat-checkbox>
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input formControlName="password" matInput />
-            <mat-error *ngIf="form.invalid">
+            <input
+              formControlName="password"
+              matInput
+              [type]="hide ? 'password' : 'text'"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              type="button"
+              [disabled]="!form.value.cambiarPassword"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error>
               {{ obtenerErrorGenerico("password", "Password", 8, 60) }}
             </mat-error>
           </mat-form-field>

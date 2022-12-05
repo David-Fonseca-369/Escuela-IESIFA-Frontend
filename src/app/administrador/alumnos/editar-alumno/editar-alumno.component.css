@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 80%;
+    background-color: white;
+    border: 1px solid #adb7d1;
+    padding: 1rem;
+    border-radius: 6px;
+  }
+  
+  .inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .inputs-alumno mat-form-field {
+    width: 32%;
+  }
+  
+  .buttons button, a{
+      width: 10rem;
+    margin-right: 1rem;
+  }
+  
+  .buttons {
+    margin-top: 1rem;
+  }
+  
+  mat-checkbox{
+    margin-bottom: 1rem;
+  }

@@ -26,10 +26,11 @@
   width: 48%;
 }
 
-.buttons button {
-  margin-right: 1rem;
+.buttons button, a{
+  width: 10rem;
+margin-right: 1rem;
 }
 
 .buttons {
-  margin-top: 1rem;
+margin-top: 1rem;
 }

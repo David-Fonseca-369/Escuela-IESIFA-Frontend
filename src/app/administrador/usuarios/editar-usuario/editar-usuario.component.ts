@@ -25,6 +25,7 @@ export class EditarUsuarioComponent implements OnInit {
   roles: RolDTO[];
   usuario: UsuarioDTO;
   cambiarPassword = false;
+  hide = false;
 
   constructor(
     private rolesService: RolesService,

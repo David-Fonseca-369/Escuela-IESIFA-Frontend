@@ -1,1 +1,187 @@
-<p>crear-alumno works!</p>
+<app-spinner [isLoading]="isLoading"></app-spinner>
+<div class="container">
+  <div class="card">
+    <h1>Crear Alumno</h1>
+    <form [formGroup]="form">
+      <div style="display: flex; flex-direction: column">
+        <div class="inputs inputs-alumno">
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error>
+              {{ obtenerErrorGenerico("nombre", "Nombre", undefined, 60) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput formControlName="apellidoPaterno" />
+            <mat-error>
+              {{
+                obtenerErrorGenerico(
+                  "apellidoPaterno",
+                  "Apellido Paterno",
+                  undefined,
+                  60
+                )
+              }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput formControlName="apellidoMaterno" />
+            <mat-error>
+              {{
+                obtenerErrorGenerico(
+                  "apellidoMaterno",
+                  "Apellido Materno",
+                  undefined,
+                  60
+                )
+              }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="inputs inputs-alumno">
+          <mat-form-field>
+            <mat-label>CURP</mat-label>
+            <input matInput formControlName="curp"  oninput="this.value = this.value.toUpperCase()"/>
+            <mat-error>
+              {{ obtenerErrorGenerico("curp", "CURP", 18, 18) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" />
+            <mat-error>
+              {{ obtenerErrorGenerico("telefono", "Teléfono", 10, 10) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Género</mat-label>
+            <mat-select
+              formControlName="idGenero"
+              placeholder="Selecciona un género"
+            >
+              <mat-option *ngFor="let genero of generos" [value]="genero.id">
+                {{genero.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              {{
+                obtenerErrorGenerico("idGenero", "Género", undefined, undefined)
+              }}</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Dirección</mat-label>
+          <textarea matInput formControlName="direccion"></textarea>
+          <mat-error>
+            {{ obtenerErrorGenerico("direccion", "Dirección", undefined, 255) }}
+          </mat-error>
+        </mat-form-field>
+
+        <div style="width: 100%; margin-bottom: 2rem">
+          <h2>Tutor</h2>
+          <hr />
+        </div>
+
+        <div class="inputs">
+          <mat-form-field style="width: 60%">
+            <mat-label>Nombre del tutor</mat-label>
+            <input matInput formControlName="nombreTutor" />
+            <mat-error>
+              {{
+                obtenerErrorGenerico(
+                  "nombreTutor",
+                  "Nombre Tutor",
+                  undefined,
+                  60
+                )
+              }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width: 38%">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefonoTutor" />
+            <mat-error>
+              {{
+                obtenerErrorGenerico("telefonoTutor", "Teléfono Tutor", 10, 10)
+              }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <mat-label>Dirección</mat-label>
+          <textarea matInput formControlName="direccionTutor"></textarea>
+
+          <mat-error>
+            {{
+              obtenerErrorGenerico(
+                "direccionTutor",
+                "Dirección Tutor",
+                undefined,
+                255
+              )
+            }}</mat-error
+          >
+        </mat-form-field>
+
+        <div style="width: 100%; margin-bottom: 2rem">
+          <h2>Datos escolares del alumno</h2>
+          <hr />
+        </div>
+
+        <div class="inputs inputs-alumno">
+          <mat-form-field>
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" />
+            <mat-error>
+              {{ obtenerErrorGenerico("correo", "Correo", undefined, 60) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password"   [type]="hide ? 'password' : 'text'"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>
+              {{ obtenerErrorGenerico("password", "Contraseña", 8, 60) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Grupo</mat-label>
+            <mat-select
+              formControlName="idGrupo"
+              placeholder="Selecciona un grupo"
+            >
+              <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
+                {{ grupo.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error>{{
+              obtenerErrorGenerico("idGrupo", "Grupo", undefined, undefined)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="buttons">
+          <button type="button" (click)="guardar()" [disabled]="form.invalid" mat-flat-button class="button-primary">
+            Guardar
+          </button>
+          <a mat-stroked-button routerLink="/alumnos"> Cancelar </a>
+        </div>
+      </div>
+    </form>
+    <app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+  </div>
+  
+</div>
