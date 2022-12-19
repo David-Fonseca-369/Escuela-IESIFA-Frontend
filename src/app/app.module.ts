@@ -41,6 +41,7 @@ import { EditarAlumnoComponent } from './administrador/alumnos/editar-alumno/edi
 import { LoginComponent } from './pages/authentication/login/login.component';
 import { AuthorizedComponent } from './security/authorized/authorized.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { MateriasDocentesComponent } from './administrador/materias/materias-docentes/materias-docentes.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
     LoginComponent,
     AuthorizedComponent,
     LandingPageComponent,
+    MateriasDocentesComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { ListaGruposComponent } from './administrador/grupos/lista-grupos/lista-
 import { CrearMateriaComponent } from './administrador/materias/crear-materia/crear-materia.component';
 import { EditarMateriaComponent } from './administrador/materias/editar-materia/editar-materia.component';
 import { ListaMateriasComponent } from './administrador/materias/lista-materias/lista-materias.component';
+import { MateriasDocentesComponent } from './administrador/materias/materias-docentes/materias-docentes.component';
 import { CrearUsuarioComponent } from './administrador/usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './administrador/usuarios/editar-usuario/editar-usuario.component';
 import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
@@ -43,7 +44,10 @@ const routes: Routes = [
     path: 'materias/editar/:id',
     component: EditarMateriaComponent,
   },
- 
+  {
+    path: 'materias/materias-docentes',
+    component: MateriasDocentesComponent,
+  },
 
   //USUARIOS
   {
@@ -74,17 +78,16 @@ const routes: Routes = [
   },
 
   //Login
-  
+
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
-
 
   // home page
   {
     path: 'landingPage',
-    component:LandingPageComponent,
+    component: LandingPageComponent,
   },
 
   {

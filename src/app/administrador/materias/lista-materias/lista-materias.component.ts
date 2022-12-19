@@ -132,7 +132,7 @@ export class ListaMateriasComponent implements OnInit {
 
   desactivar(idMateria: number) {
     this.isLoading = true;
-    this.materiasService.descativar(idMateria).subscribe({
+    this.materiasService.desactivar(idMateria).subscribe({
       next: () => {
         this.isLoading = false;
         this.obtenerMateriasPaginacion(this.paginaActual, this.cantidadRegistrosAMostrar);

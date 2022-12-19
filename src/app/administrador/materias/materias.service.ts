@@ -49,8 +49,41 @@ export class MateriasService {
   public activar(id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/activar/${id}`, null);
   }
-  public descativar(id: number): Observable<any> {
+  public desactivar(id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/desactivar/${id}`, null);
+  }
+
+  public asignadasPaginacion(
+    pagina: number,
+    cantidadRegistrosAMostrar: number,
+    idDocente: number
+  ): Observable<any> {
+
+    let params = new HttpParams();
+    params = params.append('pagina', pagina.toString());
+    params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
+
+    return this.http.get<MateriaDTO[]>(`${this.apiURL}/asignadasPaginacion/${idDocente}`,{ observe: 'response', params});
+  }
+
+  public disponiblesPaginacion(
+    pagina: number,
+    cantidadRegistrosAMostrar: number
+  ): Observable<any> {
+
+    let params = new HttpParams();
+    params = params.append('pagina', pagina.toString());
+    params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
+
+    return this.http.get<MateriaDTO[]>(`${this.apiURL}/disponiblesPaginacion`,{ observe: 'response', params});
+  }
+
+  public asignar(idMateria:number, idDocente:number):Observable<any>{
+    return this.http.put(`${this.apiURL}/asignar/${idMateria}/${idDocente}`, null)
+  }
+
+  public quitar(idMateria : number) : Observable<any>{
+    return this.http.put(`${this.apiURL}/quitar/${idMateria}`, null)
   }
 
 }

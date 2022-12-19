@@ -29,13 +29,13 @@ export class UsuariosService {
     });
   }
 
-  public filtrar(values: any) : Observable<any>{
-    const params = new HttpParams({ fromObject: values});
+  public filtrar(values: any): Observable<any> {
+    const params = new HttpParams({ fromObject: values });
 
     return this.http.get<UsuarioDTO[]>(`${this.apiURL}/filtrar`, {
       params,
-      observe: 'response'
-    })
+      observe: 'response',
+    });
   }
 
   public obtenerPorId(id: number): Observable<UsuarioDTO> {
@@ -54,5 +54,9 @@ export class UsuariosService {
   }
   public descativar(id: number): Observable<any> {
     return this.http.put(`${this.apiURL}/desactivar/${id}`, null);
+  }
+
+  public docentes(): Observable<UsuarioDTO[]> {
+    return this.http.get<UsuarioDTO[]>(`${this.apiURL}/docentes`);
   }
 }
