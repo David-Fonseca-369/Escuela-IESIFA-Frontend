@@ -7,6 +7,8 @@
     <mat-select
       formControlName="idDocente"
       placeholder="Seleccionar Docente..."
+      (valueChange)="buscarMateriasAsignadas($event)"
+      [(ngModel)]="idDocenteSeleccionado"
     >
       <mat-option *ngFor="let docente of docentes" [value]="docente.id">
         {{
@@ -27,7 +29,7 @@
         <table
           #table
           mat-table
-          [dataSource]="materiasDisponibles"
+          [dataSource]="materiasAsignadas"
           class="mat-elevation-z1 tabla-materias"
         >
           <ng-container matColumnDef="nombre">
@@ -44,49 +46,17 @@
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
-            <td mat-cell *matCellDef="let materia">
-              <mat-icon style="color: green" *ngIf="materia.estado"
-                >check_circle</mat-icon
-              >
-              <mat-icon style="color: red" *ngIf="!materia.estado"
-                >cancel</mat-icon
-              >
-            </td>
-          </ng-container>
-
           <ng-container matColumnDef="opciones">
             <th mat-header-cell *matHeaderCellDef>Opciones</th>
             <td mat-cell *matCellDef="let materia">
               <button
                 type="button"
-                routerLink="/materias/editar/{{ materia.id }}"
-                mat-flat-button
-                class="button-primary"
-              >
-                <mat-icon>edit</mat-icon>
-                Editar
-              </button>
-
-              <button
-                type="button"
-                *ngIf="materia.estado"
                 mat-flat-button
                 style="background: #a81a20; color: white"
+                (click)="quitarMateria(materia.id)"
               >
-                <mat-icon>block</mat-icon>
-                Desactivar
-              </button>
-
-              <button
-                type="button"
-                *ngIf="!materia.estado"
-                mat-flat-button
-                style="background: green; color: white"
-              >
-                <mat-icon>check</mat-icon>
-                Activar
+                <mat-icon>delete</mat-icon>
+                Quitar
               </button>
             </td>
           </ng-container>
@@ -106,9 +76,9 @@
           class="mat-elevation-z1"
           [pageSizeOptions]="[5, 10, 20, 50]"
           showFirstLastButtons
-          [length]="cantidadTotalRegistros"
-          [pageSize]="cantidadRegistrosAMostrar"
-          (page)="actualizarPaginacion($event)"
+          [length]="cantidadTotalRegistrosMateriasAsignadas"
+          [pageSize]="cantidadRegistrosAMostrarMateriasAsignadas"
+          (page)="actualizarPaginacionMateriasAsignadas($event)"
         >
         </mat-paginator>
       </div>
@@ -134,49 +104,17 @@
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
-            <td mat-cell *matCellDef="let materia">
-              <mat-icon style="color: green" *ngIf="materia.estado"
-                >check_circle</mat-icon
-              >
-              <mat-icon style="color: red" *ngIf="!materia.estado"
-                >cancel</mat-icon
-              >
-            </td>
-          </ng-container>
-
           <ng-container matColumnDef="opciones">
             <th mat-header-cell *matHeaderCellDef>Opciones</th>
             <td mat-cell *matCellDef="let materia">
               <button
                 type="button"
-                routerLink="/materias/editar/{{ materia.id }}"
+                (click)="asignarMateria(materia.id)"
                 mat-flat-button
                 class="button-primary"
               >
-                <mat-icon>edit</mat-icon>
-                Editar
-              </button>
-
-              <button
-                type="button"
-                *ngIf="materia.estado"
-                mat-flat-button
-                style="background: #a81a20; color: white"
-              >
-                <mat-icon>block</mat-icon>
-                Desactivar
-              </button>
-
-              <button
-                type="button"
-                *ngIf="!materia.estado"
-                mat-flat-button
-                style="background: green; color: white"
-              >
-                <mat-icon>check</mat-icon>
-                Activar
+                <mat-icon>add</mat-icon>
+                Asignar
               </button>
             </td>
           </ng-container>
@@ -196,9 +134,9 @@
           class="mat-elevation-z1"
           [pageSizeOptions]="[5, 10, 20, 50]"
           showFirstLastButtons
-          [length]="cantidadTotalRegistros"
-          [pageSize]="cantidadRegistrosAMostrar"
-          (page)="actualizarPaginacion($event)"
+          [length]="cantidadTotalRegistrosMateriasDisponibles"
+          [pageSize]="cantidadRegistrosAMostrarMateriasDisponibles"
+          (page)="actualizarPaginacionMateriasDisponibles($event)"
         >
         </mat-paginator>
       </div>

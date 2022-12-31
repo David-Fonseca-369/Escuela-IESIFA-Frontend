@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
-span{
+span, mat-icon{
     color: white;
+}
+
+mat-icon {
+  margin-right: 1rem;
 }

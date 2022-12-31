@@ -3,19 +3,30 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotifyComponent } from '../snackBars/notify/notify.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotifyService {
+  constructor(private snackBar: MatSnackBar) {}
 
-  constructor(private snackBar: MatSnackBar) { }
-
-  successfulNotification(text : string){
-    this.snackBar.openFromComponent(NotifyComponent,{
+  successfulNotification(text: string) {
+    this.snackBar.openFromComponent(NotifyComponent, {
       duration: 1500,
-      panelClass:['green-stackbar'],
+      panelClass: ['green-stackbar'],
       data: {
-        text: text
-      }
-    })
-}
+        text: text,
+        type: 'success'
+      },
+    });
+  }
+
+  errorNotification(text : string){
+    this.snackBar.openFromComponent(NotifyComponent, {
+      duration: 1500,
+      panelClass: ['red-stackbar'],
+      data: {
+        text: text,
+        type: 'error'
+      },
+    });
+  }
 }
