@@ -1,0 +1,28 @@
+table {
+    width: 40%;
+    margin: 3rem 0;
+  }
+  .formulario button[disabled] {
+    background: #c4cfd3;
+  }
+
+  .formulario mat-form-field {
+    margin-right: 1rem;
+  }
+
+  .formulario button {
+    background: #071a4e;
+    color: white;
+    margin-right: 1rem;
+  }
+
+  .buttons-calificacion {
+    display: flex;
+  }
+
+  @media screen and (max-width: 600px) {
+    table mat-form-field {
+      width: 5rem;
+      margin-left: 0.5rem;
+    }
+  }

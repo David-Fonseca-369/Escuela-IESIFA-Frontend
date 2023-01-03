@@ -33,3 +33,15 @@ h2{
 body {
   background-color: #eceff4;
 }
+
+
+/* Para sombrear filas de las tablas */
+/* .mat-row .mat-cell {
+  background: #ECEFF4;
+} */
+.mat-row:nth-child(2n+1){
+  background-color: #ECEFF4;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff;
+}

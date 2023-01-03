@@ -7,6 +7,7 @@ export interface MateriaCrearDTO {
 export interface MateriaDTO {
   id: number;
   idGrupo: number;
+  idNivelEducativo : number;
   nombreGrupo: string;
   nombre: string;
   descripcion: string;

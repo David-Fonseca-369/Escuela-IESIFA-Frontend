@@ -20,14 +20,14 @@ import { AlumnosService } from '../alumnos.service';
 })
 export class CrearAlumnoComponent implements OnInit {
   isLoading = false;
-  hide = true;  
-  
+  hide = true;
+
   form: FormGroup;
   generos: GeneroDTO[];
   errores: string[] = [];
   grupos: GrupoSelectorDTO[];
 
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private generosService: GenerosService,
@@ -49,6 +49,7 @@ export class CrearAlumnoComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.maxLength(60)]],
       apellidoPaterno: ['', [Validators.required, Validators.maxLength(60)]],
       apellidoMaterno: ['', [Validators.required, Validators.maxLength(60)]],
+      noCuenta: ['', [Validators.required, Validators.maxLength(60)]],
       curp: [
         '',
         [

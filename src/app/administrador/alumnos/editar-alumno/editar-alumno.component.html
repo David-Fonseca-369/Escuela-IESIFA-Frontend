@@ -149,6 +149,13 @@
         >
           Cambiar Contraseña
         </mat-checkbox>
+        <mat-form-field style="width: 32%;">
+          <mat-label>No. Cuenta</mat-label>
+          <input matInput formControlName="noCuenta"  oninput="this.value = this.value.toUpperCase()"/>
+          <mat-error>
+            {{ obtenerErrorGenerico("noCuenta", "No. Cuenta", undefined, 60) }}
+          </mat-error>
+        </mat-form-field >
 
         <div class="inputs inputs-alumno">
           <mat-form-field>

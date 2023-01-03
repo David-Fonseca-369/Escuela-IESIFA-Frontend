@@ -7,6 +7,7 @@ export interface AlumnoDTO{
     nombre : string;
     apellidoPaterno : string;
     apellidoMaterno : string;
+    noCuenta: string;
     curp : string;
     telefono : string;
     direccion : string;
@@ -24,6 +25,7 @@ export interface AlumnoCrearDTO{
     nombre : string;
     apellidoPaterno : string;
     apellidoMaterno : string;
+    noCuenta: string;
     curp : string;
     telefono : string;
     direccion : string;
@@ -31,16 +33,17 @@ export interface AlumnoCrearDTO{
     telefonoTutor : string;
     direccionTutor: string;
     correo : string;
-    password : string;    
+    password : string;
 }
 
 
-export interface AlumnoEditarDTO{    
+export interface AlumnoEditarDTO{
     idGrupo : number;
     idGenero : number;
     nombre : string;
     apellidoPaterno : string;
     apellidoMaterno : string;
+    noCuenta : string;
     curp : string;
     telefono : string;
     direccion : string;
@@ -48,5 +51,5 @@ export interface AlumnoEditarDTO{
     telefonoTutor : string;
     direccionTutor: string;
     correo : string;
-    password : string;      
+    password : string;
 }

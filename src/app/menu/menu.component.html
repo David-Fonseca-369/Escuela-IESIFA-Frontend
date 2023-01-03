@@ -76,10 +76,16 @@
 
         <button
           mat-button
-          class="example-icon favorite-icon"
-          aria-label="Example icon-button with heart icon"
+          [matMenuTriggerFor]="menuPeriodos"
+
         >
           Periodos <mat-icon>arrow_drop_down</mat-icon>
+
+          <mat-menu #menuPeriodos="matMenu">
+            <button routerLink="periodos/secundaria" mat-menu-item>Secundaria</button>
+            <button routerLink="periodos/preparatoria" mat-menu-item>Preparatoria</button>
+          </mat-menu>
+
         </button>
         <button
           mat-button
@@ -88,6 +94,22 @@
         >
           Pagos <mat-icon>arrow_drop_down</mat-icon>
         </button>
+      </ng-container>
+    </app-authorized>
+
+    <app-authorized [rol]="'Docente'">
+      <ng-container autorizado>
+        <button mat-button [matMenuTriggerFor]="menuDocente">
+          Ayuda <mat-icon>arrow_drop_down</mat-icon>
+
+          <mat-menu #menuDocente="matMenu">
+            <button mat-menu-item>
+              Manual de Usuario
+            </button>
+
+          </mat-menu>
+        </button>
+
       </ng-container>
     </app-authorized>
   </mat-toolbar-row>

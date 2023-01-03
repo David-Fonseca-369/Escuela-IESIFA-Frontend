@@ -1,0 +1,90 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
+<div class="container">
+  <h2>Registrar Calificaciones</h2>
+
+  <ng-container *ngIf="calificacionesParaAlta">
+    <div class="inputs">
+      <mat-form-field>
+        <mat-label>Materia</mat-label>
+        <input
+          matInput
+          type="text"
+          value="{{ calificacionesParaAlta.nombreMateria }}"
+          [readonly]="true"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Grupo</mat-label>
+        <input
+          matInput
+          type="text"
+          value="{{ calificacionesParaAlta.nombreGrupo }}"
+          [readonly]="true"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Grado</mat-label>
+        <input
+          matInput
+          type="text"
+          value="{{ calificacionesParaAlta.nombreGrado }}"
+          [readonly]="true"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nivel Académico</mat-label>
+        <input
+          matInput
+          type="text"
+          value="{{ calificacionesParaAlta.nombreNivelEducativo }}"
+          [readonly]="true"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Periodo</mat-label>
+        <input
+          matInput
+          type="text"
+          value="{{ calificacionesParaAlta.nombrePeriodo }}"
+          [readonly]="true"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Evaluación</mat-label>
+        <input
+          matInput
+          type="text"
+          value="{{ calificacionesParaAlta.evaluacion + '° Evaluación' }}"
+          [readonly]="true"
+        />
+      </mat-form-field>
+    </div>
+
+    <app-lista-alumnos-calificaciones
+      [datosAltaCalificaciones]="calificacionesParaAlta"
+      (isLoading) = "checkSpinner($event)"
+    ></app-lista-alumnos-calificaciones>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="errores.length > 0">
+  <div class="info">
+    <div>
+      <ul>
+        <li *ngFor="let error of errores">{{ error }}</li>
+      </ul>
+    </div>
+    <div style="display: flex; align-items: center">
+      <mat-icon>info</mat-icon>
+    </div>
+  </div>
+
+  <a mat-stroked-button routerLink="/materias-asignadas">Atrás</a>
+</ng-container>
+

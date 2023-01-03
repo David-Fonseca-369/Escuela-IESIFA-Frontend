@@ -30,6 +30,34 @@ export class AlumnosService {
     });
   }
 
+
+  public alumnosGrupo(
+    idGrupo : number,
+    pagina: number,
+    cantidadRegistrosAMostrar: number
+  ): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('pagina', pagina.toString());
+    params = params.append(
+      'recordsPorPagina',
+      cantidadRegistrosAMostrar.toString()
+    );
+
+    return this.http.get<AlumnoDTO[]>(`${this.apiURL}/alumnosGrupo/${idGrupo}`, {
+      observe: 'response',
+      params,
+    });
+  }
+
+  public alumnosGrupoFiltrar(idGrupo: number, values: any) : Observable<any>{
+    const params = new HttpParams({ fromObject: values});
+
+    return this.http.get<AlumnoDTO[]>(`${this.apiURL}/alumnosGrupoFiltrar/${idGrupo}`, {
+      params,
+      observe: 'response'
+    })
+  }
+
   public filtrar(values: any) : Observable<any>{
     const params = new HttpParams({ fromObject: values});
 
@@ -38,6 +66,8 @@ export class AlumnosService {
       observe: 'response'
     })
   }
+
+
 
   public obtenerPorId(id: number): Observable<AlumnoDTO> {
     return this.http.get<AlumnoDTO>(`${this.apiURL}/${id}`);

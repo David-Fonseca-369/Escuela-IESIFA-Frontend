@@ -24,7 +24,7 @@ export class ListaAlumnosComponent implements OnInit {
   paginaActual = 1;
   cantidadRegistrosAMostrar = 10;
 
-  columnasAMostrar = ['nombre', 'nombreGrupo', 'correo', 'estado', 'opciones'];
+  columnasAMostrar = ['nombre', 'nombreGrupo', 'correo','noCuenta', 'estado', 'opciones'];
 
   constructor(
     private alumnosService: AlumnosService,
@@ -53,9 +53,9 @@ export class ListaAlumnosComponent implements OnInit {
     });
   }
 
-  
+
   searchAlumnos(values:any){
-    
+
     this.isLoading = true;
     values.pagina = this.paginaActual;
     values.recordsPorPagina = this.cantidadRegistrosAMostrar;

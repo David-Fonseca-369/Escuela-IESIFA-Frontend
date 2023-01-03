@@ -66,6 +66,16 @@ export class MateriasService {
     return this.http.get<MateriaDTO[]>(`${this.apiURL}/asignadasPaginacion/${idDocente}`,{ observe: 'response', params});
   }
 
+
+  public asignadasFiltrar(idDocente: number, values: any) : Observable<any>{
+    const params = new HttpParams({ fromObject: values});
+    return this.http.get<MateriaDTO[]>(`${this.apiURL}/asignadasFiltrar/${idDocente}`, {
+      params,
+      observe: 'response'
+    })
+  }
+
+
   public disponiblesPaginacion(
     pagina: number,
     cantidadRegistrosAMostrar: number

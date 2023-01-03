@@ -1,0 +1,12 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
+<div class="container">
+  <div class="card">
+    <h2>Crear Periodo Secundaria</h2>
+    <app-formulario-periodo
+      (onSubmit)="guardarCambios($event)"
+      [errores]="errores"
+      [opcion]="1"
+    ></app-formulario-periodo>
+  </div>
+</div>

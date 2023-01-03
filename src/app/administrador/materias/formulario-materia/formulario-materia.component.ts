@@ -17,38 +17,38 @@ export class FormularioMateriaComponent implements OnInit {
   isLoading = false;
 
   @Input()
-  errores : string[] = [];
+  errores: string[] = [];
 
   @Output()
-  onSubmit : EventEmitter<MateriaCrearDTO> = new EventEmitter<MateriaCrearDTO>();
+  onSubmit: EventEmitter<MateriaCrearDTO> = new EventEmitter<MateriaCrearDTO>();
 
   @Input()
-  materia : MateriaEditarDTO;
+  materia: MateriaEditarDTO;
 
-  form : FormGroup;
+  form: FormGroup;
 
-  constructor(private gruposService: GruposService,
-    private formBuilder : FormBuilder) {}
+  constructor(
+    private gruposService: GruposService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.obtenerGrupos();
 
     this.loadForm();
   }
 
-  loadForm(){
+  loadForm() {
     this.form = this.formBuilder.group({
-      idGrupo : ['', {validators : [Validators.required]}],
-      nombre : ['', {validators : [Validators.required]}],
-      descripcion : ['', {validators : [Validators.maxLength(255)]}]
+      idGrupo: ['', { validators: [Validators.required] }],
+      nombre: ['', { validators: [Validators.required] }],
+      descripcion: ['', { validators: [Validators.maxLength(255)] }],
     });
 
     //si es para editar
-    if(this.materia !== undefined){
+    if (this.materia !== undefined) {
       this.form.patchValue(this.materia);
     }
-
-
   }
 
   obtenerGrupos() {
@@ -59,7 +59,7 @@ export class FormularioMateriaComponent implements OnInit {
         this.grupos = response;
       },
       error: (error) => {
-        this.errores = parsearErroresAPI(error)
+        this.errores = parsearErroresAPI(error);
       },
     });
   }
@@ -78,7 +78,7 @@ export class FormularioMateriaComponent implements OnInit {
     return '';
   }
 
-  guardar(){
+  guardar() {
     this.onSubmit.emit(this.form.value);
   }
 }

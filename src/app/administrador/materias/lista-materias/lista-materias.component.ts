@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { parsearErroresAPI } from 'src/app/helpers/helpers';
@@ -14,6 +14,8 @@ import { MateriasService } from '../materias.service';
   styleUrls: ['./lista-materias.component.css'],
 })
 export class ListaMateriasComponent implements OnInit {
+
+
   isLoading = false;
   materias: MateriaDTO[];
   errores: string[] = [];
@@ -55,11 +57,10 @@ export class ListaMateriasComponent implements OnInit {
     this.isLoading = true;
     this.materiasService
       .todosPaginacion(pagina, cantidadRegistrosAMostrar)
-      .subscribe({
+ .subscribe({
         next: (response: HttpResponse<MateriaDTO[]>) => {
           this.isLoading = false;
-
-          this.materias = response.body;
+         this.materias = response.body;
           this.cantidadTotalRegistros = response.headers.get(
             'cantidadTotalRegistros'
           );
@@ -146,7 +147,7 @@ export class ListaMateriasComponent implements OnInit {
   }
 
   searchMaterias(values:any){
-    
+
     this.isLoading = true;
     values.pagina = this.paginaActual;
     values.recordsPorPagina = this.cantidadRegistrosAMostrar;

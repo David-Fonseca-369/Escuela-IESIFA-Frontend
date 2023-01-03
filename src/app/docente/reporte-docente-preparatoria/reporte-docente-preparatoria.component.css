@@ -1,0 +1,38 @@
+mat-form-field{
+  margin-right: 1rem;
+}
+
+
+table {
+  width: 100%;
+  margin: 3rem 0;
+}
+
+
+
+.container button {
+  background: #071a4e;
+  color: white;
+  margin-right: 1rem;
+}
+
+.buttons-calificacion {
+  display: flex;
+}
+
+
+.info{
+  background-color: #071a4e;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+@media screen and (max-width: 600px) {
+  table mat-form-field {
+    width: 5rem;
+    margin-left: 0.5rem;
+  }
+}

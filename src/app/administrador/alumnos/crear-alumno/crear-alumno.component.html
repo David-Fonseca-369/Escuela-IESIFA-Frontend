@@ -46,7 +46,11 @@
         <div class="inputs inputs-alumno">
           <mat-form-field>
             <mat-label>CURP</mat-label>
-            <input matInput formControlName="curp"  oninput="this.value = this.value.toUpperCase()"/>
+            <input
+              matInput
+              formControlName="curp"
+              oninput="this.value = this.value.toUpperCase()"
+            />
             <mat-error>
               {{ obtenerErrorGenerico("curp", "CURP", 18, 18) }}
             </mat-error>
@@ -67,7 +71,7 @@
               placeholder="Selecciona un género"
             >
               <mat-option *ngFor="let genero of generos" [value]="genero.id">
-                {{genero.nombre}}
+                {{ genero.nombre }}
               </mat-option>
             </mat-select>
             <mat-error>
@@ -138,6 +142,17 @@
           <hr />
         </div>
 
+        <mat-form-field style="width: 32%">
+          <mat-label>No. Cuenta</mat-label>
+          <input
+            matInput
+            formControlName="noCuenta"
+            oninput="this.value = this.value.toUpperCase()"
+          />
+          <mat-error>
+            {{ obtenerErrorGenerico("noCuenta", "No. Cuenta", undefined, 60) }}
+          </mat-error>
+        </mat-form-field>
         <div class="inputs inputs-alumno">
           <mat-form-field>
             <mat-label>Correo</mat-label>
@@ -149,9 +164,19 @@
 
           <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input matInput formControlName="password"   [type]="hide ? 'password' : 'text'"/>
-            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input
+              matInput
+              formControlName="password"
+              autocomplete="new-password"
+              [type]="hide ? 'password' : 'text'"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              type="button"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
             <mat-error>
               {{ obtenerErrorGenerico("password", "Contraseña", 8, 60) }}
@@ -173,8 +198,15 @@
             }}</mat-error>
           </mat-form-field>
         </div>
+
         <div class="buttons">
-          <button type="button" (click)="guardar()" [disabled]="form.invalid" mat-flat-button class="button-primary">
+          <button
+            type="button"
+            (click)="guardar()"
+            [disabled]="form.invalid"
+            mat-flat-button
+            class="button-primary"
+          >
             Guardar
           </button>
           <a mat-stroked-button routerLink="/alumnos"> Cancelar </a>
@@ -183,5 +215,4 @@
     </form>
     <app-mostrar-errores [errores]="errores"></app-mostrar-errores>
   </div>
-  
 </div>

@@ -42,6 +42,17 @@ import { LoginComponent } from './pages/authentication/login/login.component';
 import { AuthorizedComponent } from './security/authorized/authorized.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { MateriasDocentesComponent } from './administrador/materias/materias-docentes/materias-docentes.component';
+import { ListaPeriodosSecundariaComponent } from './administrador/periodos/lista-periodos-secundaria/lista-periodos-secundaria.component';
+import { ListaPeriodosPreparatoriaComponent } from './administrador/periodos/lista-periodos-preparatoria/lista-periodos-preparatoria.component';
+import { FormularioPeriodoComponent } from './administrador/periodos/formulario-periodo/formulario-periodo.component';
+import { CrearPeriodoSecundariaComponent } from './administrador/periodos/crear-periodo-secundaria/crear-periodo-secundaria.component';
+import { CrearPeriodoPreparatoriaComponent } from './administrador/periodos/crear-periodo-preparatoria/crear-periodo-preparatoria.component';
+import { MateriasAsignadasComponent } from './docente/materias-asignadas/materias-asignadas.component';
+import { CalificacionesCrearComponent } from './docente/calificaciones-crear/calificaciones-crear.component';
+import { ListaAlumnosCalificacionesComponent } from './docente/lista-alumnos-calificaciones/lista-alumnos-calificaciones.component';
+import { ReporteDocenteComponent } from './docente/reporte-docente/reporte-docente.component';
+import { ReporteDocentePreparatoriaComponent } from './docente/reporte-docente-preparatoria/reporte-docente-preparatoria.component';
+import { AlumnosMateriaComponent } from './docente/alumnos-materia/alumnos-materia.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +79,17 @@ import { MateriasDocentesComponent } from './administrador/materias/materias-doc
     AuthorizedComponent,
     LandingPageComponent,
     MateriasDocentesComponent,
+    ListaPeriodosSecundariaComponent,
+    ListaPeriodosPreparatoriaComponent,
+    FormularioPeriodoComponent,
+    CrearPeriodoSecundariaComponent,
+    CrearPeriodoPreparatoriaComponent,
+    MateriasAsignadasComponent,
+    CalificacionesCrearComponent,
+    ListaAlumnosCalificacionesComponent,
+    ReporteDocenteComponent,
+    ReporteDocentePreparatoriaComponent,
+    AlumnosMateriaComponent,
   ],
   imports: [
     BrowserModule,

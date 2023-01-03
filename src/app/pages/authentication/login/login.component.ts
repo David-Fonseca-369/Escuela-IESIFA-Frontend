@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { obtenerErroresGenerico, parsearErroresAPI } from 'src/app/helpers/helpers';
+import {
+  obtenerErroresGenerico,
+  parsearErroresAPI,
+} from 'src/app/helpers/helpers';
 import { SecurityService } from 'src/app/security/security.service';
 
 @Component({
@@ -15,20 +18,27 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   errores: string[] = [];
 
+  isChecked: boolean;
+
   constructor(
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
-    private router : Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadForm();
+    this.isActived();
   }
 
   loadForm() {
     this.form = this.formBuilder.group({
-      correo: ['', [Validators.required, Validators.email]],
+      correo: [
+        localStorage.getItem('correo') || '',
+        [Validators.required, Validators.email],
+      ],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      remember: [false],
     });
   }
 
@@ -40,8 +50,16 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
 
         this.securityService.guardarToken(response);
-        this.router.navigate(['/landingPage']);
-        
+
+        this.isRemember();
+
+        if (this.securityService.obtenerCampoJWT('rol') === 'Administrador') {
+          this.router.navigate(['/landingPage']);
+        }
+
+        if (this.securityService.obtenerCampoJWT('rol') === 'Docente') {
+          this.router.navigate(['/materias-asignadas']);
+        }
       },
       error: (error) => {
         this.isLoading = false;
@@ -50,7 +68,34 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  obtenerErrorGenerico(nombreCampo : string, nombreMostrar:string, minLength?:number, maxLength?: number): string{  
-    return obtenerErroresGenerico(nombreCampo,nombreMostrar, this.form, minLength, maxLength );
+  isRemember() {
+    if (this.form.get('remember')?.value) {
+      localStorage.setItem('correo', this.form.get('correo')?.value);
+    } else {
+      localStorage.removeItem('correo');
     }
+  }
+
+  isActived() {    
+    if (localStorage.getItem('correo') !== null) {
+      this.isChecked = true;
+    } else {
+      this.isChecked = false;
+    }
+  }
+
+  obtenerErrorGenerico(
+    nombreCampo: string,
+    nombreMostrar: string,
+    minLength?: number,
+    maxLength?: number
+  ): string {
+    return obtenerErroresGenerico(
+      nombreCampo,
+      nombreMostrar,
+      this.form,
+      minLength,
+      maxLength
+    );
+  }
 }

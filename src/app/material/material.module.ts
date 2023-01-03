@@ -15,7 +15,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+//Para date son 2
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -32,7 +36,10 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatSnackBarModule,
     MatPaginatorModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
   ],
   providers: [
     //Para que siempre se mantenga flotante el label y la apariencia sea outline
@@ -40,6 +47,9 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline', floatLabel: 'always' },
     },
+    {
+      provide: MAT_DATE_LOCALE, useValue: 'es-ES'
+    }
   ],
 })
 export class MaterialModule {}

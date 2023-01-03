@@ -1,0 +1,46 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+<form [formGroup]="form">
+  <div class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input formControlName="nombre" matInput />
+      <mat-error *ngIf="form.invalid">{{
+        obtenerErrorCampoNombre()
+      }}</mat-error>
+    </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="fechaInicio"
+            placeholder="Inicio"
+          />
+          <input matEndDate formControlName="fechaFin" placeholder="Fin" />
+        </mat-date-range-input>
+        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+
+
+    </div>
+
+  <div class="buttons">
+    <button
+      type="button"
+      mat-flat-button
+      class="button-primary"
+      [disabled]="form.invalid"
+      (click)="guardar()"
+    >
+      Guardar
+    </button>
+    <a mat-stroked-button (click)="volver()"> Cancelar </a>
+  </div>
+</form>
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
