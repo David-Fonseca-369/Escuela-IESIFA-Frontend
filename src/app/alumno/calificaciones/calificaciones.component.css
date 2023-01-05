@@ -1,0 +1,23 @@
+.table-datos td {
+  border-bottom: 1pt solid black;
+}
+
+.table-calificaciones table,
+.table-calificaciones th,
+.table-calificaciones td {
+  border: 2px solid #5C6FA3;
+  border-collapse: collapse;
+}
+
+.table-datos{
+  width: 80%;
+}
+
+.table-calificaciones table{
+  width: 80%;
+}
+
+.table-calificaciones{
+  display: flex;
+  justify-content: center;
+}

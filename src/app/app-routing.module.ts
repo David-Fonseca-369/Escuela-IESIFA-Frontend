@@ -17,8 +17,10 @@ import { ListaPeriodosSecundariaComponent } from './administrador/periodos/lista
 import { CrearUsuarioComponent } from './administrador/usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './administrador/usuarios/editar-usuario/editar-usuario.component';
 import { ListaUsuariosComponent } from './administrador/usuarios/lista-usuarios/lista-usuarios.component';
+import { CalificacionesComponent } from './alumno/calificaciones/calificaciones.component';
 import { AlumnosMateriaComponent } from './docente/alumnos-materia/alumnos-materia.component';
 import { CalificacionesCrearComponent } from './docente/calificaciones-crear/calificaciones-crear.component';
+import { ListaAlumnosCalificacionesComponent } from './docente/lista-alumnos-calificaciones/lista-alumnos-calificaciones.component';
 import { MateriasAsignadasComponent } from './docente/materias-asignadas/materias-asignadas.component';
 import { ReporteDocentePreparatoriaComponent } from './docente/reporte-docente-preparatoria/reporte-docente-preparatoria.component';
 import { ReporteDocenteComponent } from './docente/reporte-docente/reporte-docente.component';
@@ -147,6 +149,13 @@ const routes: Routes = [
     path: 'materias-asignadas/alumnos-materia/:id/:materia/:grupo',
     component: AlumnosMateriaComponent,
   },
+
+  //Alumno
+  {
+    path: 'alumno/calificaciones',
+    component: CalificacionesComponent,
+  },
+
 
   //Login
 

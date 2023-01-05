@@ -10,6 +10,12 @@ import { CrearMateriaComponent } from './administrador/materias/crear-materia/cr
 import { CrearGrupoComponent } from './administrador/grupos/crear-grupo/crear-grupo.component';
 import { ListaGruposComponent } from './administrador/grupos/lista-grupos/lista-grupos.component';
 
+//Auto table
+// npm install jspdf@1.5.3 html2canvas
+// npm install @types/jspdf @types/html2canvas 
+//npm install jspdf jspdf-autotable
+
+
 //mensajes sweet alert
 ////v11.0.0
 //npm i @sweetalert2/ngx-sweetalert2@11.0.0 --force
@@ -53,6 +59,7 @@ import { ListaAlumnosCalificacionesComponent } from './docente/lista-alumnos-cal
 import { ReporteDocenteComponent } from './docente/reporte-docente/reporte-docente.component';
 import { ReporteDocentePreparatoriaComponent } from './docente/reporte-docente-preparatoria/reporte-docente-preparatoria.component';
 import { AlumnosMateriaComponent } from './docente/alumnos-materia/alumnos-materia.component';
+import { CalificacionesComponent } from './alumno/calificaciones/calificaciones.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +97,7 @@ import { AlumnosMateriaComponent } from './docente/alumnos-materia/alumnos-mater
     ReporteDocenteComponent,
     ReporteDocentePreparatoriaComponent,
     AlumnosMateriaComponent,
+    CalificacionesComponent,
   ],
   imports: [
     BrowserModule,

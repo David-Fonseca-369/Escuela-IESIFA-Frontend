@@ -61,7 +61,6 @@ export class MateriasAsignadasComponent implements OnInit {
             'cantidadTotalRegistros'
           );
 
-          console.log(response.body);
         },
         error: (error) => {
           this.isLoading = false;
